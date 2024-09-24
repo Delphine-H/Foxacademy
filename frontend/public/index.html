@@ -1,43 +1,76 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="Web site created using create-react-app"
-    />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <!--
-      manifest.json provides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Foxacademy - Apprendre en s'amusant</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="header-buttons">
+      <button class="btn-login">Connexion</button>
+      <button class="btn-signup">Inscription</button>
+    </div>
+  </header>
 
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
-    <title>React App</title>
-  </head>
-  <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
+  <!-- Bannière principale -->
+  <section class="banner">
+    <div class="banner-content">
+      <img src="Logo_Fox.png" alt="Foxacademy Logo" class="logo">
+      <h1>Bienvenue à Foxacademy</h1>
+      <p>Où l’apprentissage devient un jeu d’enfant ! Explorez, apprenez et jouez avec nous.</p>
+      <button class="btn-cta">Commencez à apprendre</button>
+    </div>
+  </section>
 
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
+  <!-- À propos -->
+  <section class="about">
+    <h2>À propos de Foxacademy</h2>
+    <p>Foxacademy est un site dédié à rendre l'apprentissage amusant et interactif pour les enfants. Nous croyons que chaque enfant peut apprendre tout en jouant, et notre plateforme propose des jeux éducatifs, des activités interactives et des ressources pédagogiques adaptées à tous les âges.</p>
+  </section>
 
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
-  </body>
+  <!-- Fonctionnalités principales -->
+  <section class="features">
+    <h2>Fonctionnalités principales</h2>
+    <div class="feature">
+      <h3>Jeux éducatifs</h3>
+      <p>Des jeux conçus pour stimuler la créativité et développer les compétences cognitives de vos enfants.</p>
+    </div>
+    <div class="feature">
+      <h3>Activités interactives</h3>
+      <p>Des activités amusantes qui encouragent l'apprentissage pratique et collaboratif.</p>
+    </div>
+    <div class="feature">
+      <h3>Ressources pédagogiques</h3>
+      <p>Des supports d’apprentissage pour aider vos enfants à réussir à l’école.</p>
+    </div>
+  </section>
+
+  <!-- Témoignages -->
+  <section class="testimonials">
+    <h2>Témoignages</h2>
+    <blockquote>
+      “Mon enfant adore les jeux sur Foxacademy et a énormément progressé à l’école. Merci !” - Parent
+    </blockquote>
+    <blockquote>
+      “J'apprends plein de choses tout en m'amusant avec mes amis !” - Enfant de 8 ans
+    </blockquote>
+  </section>
+
+  <!-- Appel à l'action -->
+  <section class="cta-section">
+    <h2>Prêt à commencer ?</h2>
+    <p>Inscrivez-vous dès maintenant et rejoignez des milliers d'enfants qui apprennent tout en s'amusant !</p>
+    <button class="btn-signup-large">C'est parti !</button>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p class="slogan">LEARN & PLAY</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
 </html>
