@@ -15,7 +15,7 @@ services:
       - JWT_SECRET=${JWT_SECRET}
     depends_on:
       - postgres
-    command: sh -c "npm run dev"
+    command: sh -c "node seeders/seed.js" & "npm run dev"
 
   postgres:
     image: postgres:13
