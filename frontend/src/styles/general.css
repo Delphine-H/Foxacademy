@@ -1,0 +1,29 @@
+/*
+  Style
+*/
+
+:root {
+  /* Colors */
+  --color-background: #f7f7f7;
+  --color-primary: #00C2BA;
+  --color-white: #FFFFFF;
+  --color-text: #333;
+  --color-heading: #333;
+
+  /* Fonts */
+  --font-family-body: 'Arial', 'Calibri', sans-serif;
+}
+
+/* Reset général */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-family-body);
+  background-color: var(--color-background);
+  color: var(--color-text);
+  text-align: center;
+}
