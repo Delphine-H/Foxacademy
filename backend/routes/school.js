@@ -39,4 +39,16 @@ router.get('/', async (req, res) => {
   }
 });
 
+// Route to get a list of schools by department code
+router.get('/department/:departmentCode', async (req, res) => {
+  try {
+    const { departmentCode } = req.params;
+    const schools = await School.findAll({ where: { DepartmentCode: departmentCode } });
+    return res.status(200).json(schools);
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ error: 'Failed to retrieve schools' });
+  }
+});
+
 module.exports = router;
