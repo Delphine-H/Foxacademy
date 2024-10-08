@@ -4,8 +4,24 @@ const sequelize = require('../config/database');
 const Result = sequelize.define('Result', {
   ResultID: {
     type: DataTypes.INTEGER,
-    primaryKey: true,
     autoIncrement: true,
+    primaryKey: true,
+  },
+  UserID: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    references: {
+      model: 'users',
+      key: 'UserID',
+    },
+  },
+  QuestionID: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    references: {
+      model: 'questions',
+      key: 'QuestionID',
+    },
   },
   Score: {
     type: DataTypes.INTEGER,
@@ -16,7 +32,7 @@ const Result = sequelize.define('Result', {
     allowNull: false,
   },
   Subject: {
-    type: DataTypes.ENUM('Mathématiques', 'Français', 'Histoire', 'Géographie', 'Sciences', 'Anglais'),
+    type: DataTypes.STRING,
     allowNull: false,
   },
 }, {
