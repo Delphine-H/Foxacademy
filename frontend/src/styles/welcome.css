@@ -1,15 +1,5 @@
-/* Reset général */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
 
 body {
-  font-family: 'Arial', sans-serif;
-  background-color: #F7F7F7;
-  color: #333;
-  text-align: center;
   line-height: 1.6;
 }
 
@@ -31,8 +21,8 @@ header {
 }
 
 .btn-login {
-  background-color: white;
-  color: #00C2BA;
+  background-color: var(--color-white);
+  color: var(--color-primary);
 }
 
 .btn-signup {
