@@ -3,7 +3,7 @@
 header {
   display: flex;
   justify-content: flex-end;
-  background-color: #00C2BA; /* Même couleur de header que sur la page d'accueil */
+  background-color: var(--color-primary); /* Même couleur de header que sur la page d'accueil */
   padding: 10px 20px;
 }
 
@@ -17,13 +17,13 @@ header {
 }
 
 .btn-login {
-  background-color: white;
-  color: #00C2BA; /* Même style que sur la page d'accueil */
+  background-color: var(--color-white); /* Même couleur que sur la page d'accueil */
+  color: var(--color-primary); /* Même style que sur la page d'accueil */
 }
 
 .btn-signup {
-  background-color: #FE5617; /* Harmonisation des couleurs */
-  color: white;
+  background-color: var(--color-secondary-fox); /* Harmonisation des couleurs */
+  color: var(--color-white);
 }
 
 /* Logo */
@@ -42,31 +42,31 @@ header {
   flex-direction: column;
   width: 300px;
   margin: 0 auto;
-  background-color: white; /* Formulaire sur fond blanc */
+  background-color: var(--color-white); /* Formulaire sur fond blanc */
   padding: 30px;
   border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
 .login-form label {
   margin-top: 15px;
   font-size: 18px;
   text-align: left;
-  color: #333;
+  color: var(--color-text); /* Couleur de texte similaire à la page d'accueil */
 }
 
 .login-form input {
   padding: 10px;
   margin-top: 5px;
   border: none;
-  background-color: #E9E9E9; /* inputs (plus doux) */
+  background-color: var(--color-inputs); /* inputs (plus doux) */
   border-radius: 5px;
   font-size: 16px;
 }
 
 .btn-submit {
-  background-color: #FE5617;
-  color: white;
+  background-color: var(--color-secondary-fox); /* Couleur similaire à la page d'accueil */
+  color: var(--color-white);
   border: none;
   margin-top: 20px;
   padding: 10px;
@@ -76,17 +76,17 @@ header {
 }
 
 .btn-submit:hover {
-  background-color: #FE5617; /* Effet similaire à la page d'accueil (hover) */
+  background-color: var(--color-secondary-fox); /* Effet similaire à la page d'accueil (hover) */
 }
 
 /* Footer */
 footer {
-  background-color: #00C2BA;
+  background-color: var(--color-primary); /* Couleur similaire à la page d'accueil */
   padding: 10px 0;
 }
 
 .slogan {
-  color: white;
+  color: var(--color-white);
   font-size: 24px;
   font-weight: bold;
 }

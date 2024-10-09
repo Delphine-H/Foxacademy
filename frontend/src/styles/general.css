@@ -1,18 +1,27 @@
-/*
-  Style
-*/
+/* Style */
 
 :root {
   /* Colors */
   --color-background: #f7f7f7;
+  --color-secondary-fox: #FE5617;
   --color-primary: #00C2BA;
   --color-white: #FFFFFF;
   --color-text: #333;
   --color-heading: #333;
+  --color-border: #e0e0e0;
+  --color-shadow: rgba(0, 0, 0, 0.1);
+  --color-error: #ff0000;
+  --color-success: #00C2BA;
+  --color-warning: #FFA500;
+  --color-info: #00C2BA;
+  --color-inputs: #E9E9E9;
 
   /* Fonts */
   --font-family-body: 'Arial', 'Calibri', sans-serif;
 }
+
+  /* buttons */
+
 
 /* Reset général */
 * {
@@ -26,4 +35,4 @@ body {
   background-color: var(--color-background);
   color: var(--color-text);
   text-align: center;
-}
+ }
