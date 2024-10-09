@@ -16,6 +16,13 @@ router.post('/', async (req, res) => {
       return res.status(400).json({ error: 'All fields are required' });
     }
 
+    // Check if the email already exists
+    const existingUser = await User.findOne({ where: { Email } });
+    if (existingUser) {
+      console.log('Email already in use:', Email);
+      return res.status(400).json({ error: 'Email already in use' });
+    }
+
     let hashedPassword;
     try {
       hashedPassword = await bcrypt.hash(Password, 10); // Using await
@@ -35,9 +42,11 @@ router.post('/', async (req, res) => {
       SchoolID,
       CohortID,
     });
-
+    
+    console.log('User registered successfully', newUser);
     // Respond with a success message and user data
     return res.status(201).json({ message: 'User registered successfully', newUser });
+
   } catch (err) {
     // Handle other errors, such as duplicate emails
     console.error('Error during user creation:', err);
