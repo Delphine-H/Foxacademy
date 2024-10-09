@@ -144,6 +144,20 @@ const Register = () => {
               required
             />
           </div>
+          {/*role de l'utilisateur */}
+          <div>
+            <label htmlFor="role">Rôle:</label>
+            <select
+              id="role"
+              name="role"
+              value={formData.role}
+              onChange={handleChange}
+              required
+              ><option value="">Sélectionner votre rôle</option>
+              <option value="eleve">Eleve</option>
+              <option value="professeur">Professeur</option>
+              </select>
+          </div>
 
           {/* Année scolaire */}
           <div>
@@ -170,10 +184,11 @@ const Register = () => {
               required
             >
               <option value="">Sélectionner un niveau</option>
-              <option value="primaire">Primaire</option>
-              <option value="college">Collège</option>
-              <option value="lycee">Lycée</option>
-              <option value="universite">Université</option>
+              <option value="primaire">CP</option>
+              <option value="college">CE1</option>
+              <option value="lycee">CE2</option>
+              <option value="universite">CM1</option>
+              <option value="universite">CM2</option>
             </select>
           </div>
 
@@ -188,9 +203,9 @@ const Register = () => {
               required
             >
               <option value="">Sélectionner une école</option>
-              <option value="ecole1">École 1</option>
-              <option value="ecole2">École 2</option>
-              <option value="ecole3">École 3</option>
+              <option value="ecole1">École Saint-Exupéry</option>
+              <option value="ecole2">École Jeanne-d'Arc</option>
+              <option value="ecole3">École Marie Curie</option>
             </select>
           </div>
 
