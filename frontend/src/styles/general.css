@@ -15,7 +15,7 @@
   --color-warning: #FFA500;
   --color-info: #00C2BA;
   --color-inputs: #E9E9E9;
-  --color-other: #005959;
+  --color-other: #028181;
 
   /* Fonts */
   --font-family-body: 'Arial', 'Calibri', sans-serif;
@@ -31,9 +31,32 @@
   box-sizing: border-box;
 }
 
+/* Header */
+header {
+  display: flex;
+  justify-content: flex-end;
+  background-color: var(--color-primary); /* Même couleur de header que sur la page d'accueil */
+  padding: 10px 20px;
+}
+
+/* Body */
+
 body {
   font-family: var(--font-family-body);
   background-color: var(--color-background);
   color: var(--color-text);
   text-align: center;
  }
+
+
+/* Footer */
+footer {
+  background-color: var(--color-primary); /* Couleur similaire à la page d'accueil */
+  padding: 10px 0;
+}
+
+.slogan {
+  color: var(--color-white);
+  font-size: 24px;
+  font-weight: bold;
+}
