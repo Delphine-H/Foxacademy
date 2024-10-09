@@ -7,7 +7,7 @@ body {
 header {
   display: flex;
   justify-content: flex-end;
-  background-color: #00C2BA;
+  background-color: var(--color-primary);
   padding: 20px;
 }
 
@@ -26,14 +26,14 @@ header {
 }
 
 .btn-signup {
-  background-color: #FE5617;
-  color: white;
+  background-color: var(--color-secondary-fox);
+  color: var(--color-white);
 }
 
 /* Bannière principale */
 .banner {
-  background-color: #00C2BA;
-  color: white;
+  background-color: var(--color-primary);
+  color: var(--color-white);
   padding: 50px 20px;
   text-align: center;
 }
@@ -58,8 +58,8 @@ header {
 }
 
 .btn-cta {
-  background-color: #FE5617;
-  color: white;
+  background-color: var(--color-secondary-fox);
+  color: var(--color-white);
   padding: 15px 20px;
   border: none;
   cursor: pointer;
@@ -68,13 +68,13 @@ header {
 }
 
 .btn-cta:hover {
-  background-color: #E34E16;
+  background-color: var(--color-secondary-fox);
 }
 
 /* À propos */
 .about {
   padding: 50px 20px;
-  background-color: #F7F7F7;
+  background-color: var(--color-background);
 }
 
 .about h2 {
@@ -90,7 +90,7 @@ header {
 
 /* Fonctionnalités */
 .features {
-  background-color: #FFFFFF;
+  background-color: var(--color-white);
   padding: 50px 20px;
 }
 
@@ -105,7 +105,7 @@ header {
 
 .feature h3 {
   font-size: 1.5em;
-  color: #00C2BA;
+  color: var(--color-primary);
 }
 
 .feature p {
@@ -116,7 +116,7 @@ header {
 
 /* Témoignages */
 .testimonials {
-  background-color: #F7F7F7;
+  background-color: var(--color-background);
   padding: 50px 20px;
 }
 
@@ -129,14 +129,14 @@ blockquote {
   font-size: 1.2em;
   max-width: 600px;
   margin: 20px auto;
-  color: #555;
+  color: var(--color-text);
   font-style: italic;
 }
 
 /* Bouton d'appel à l'action */
 .cta-section {
-  background-color: #00C2BA;
-  color: white;
+  background-color: var(--color-primary);
+  color: var(--color-white);
   padding: 50px 20px;
 }
 
@@ -151,8 +151,8 @@ blockquote {
 }
 
 .btn-signup-large {
-  background-color: #FE5617;
-  color: white;
+  background-color: var(--color-secondary-fox);
+  color: var(--color-white);
   padding: 15px 30px;
   font-size: 1.5em;
   border: none;
@@ -161,17 +161,17 @@ blockquote {
 }
 
 .btn-signup-large:hover {
-  background-color: #E34E16;
+  background-color: var(--color-secondary-fox);
 }
 
 /* Footer */
 footer {
-  background-color: #00C2BA;
+  background-color: var(--color-primary);
   padding: 10px 0;
 }
 
 .slogan {
-  color: white;
+  color: var(--color-white);
   font-size: 24px;
   font-weight: bold;
 }
