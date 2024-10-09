@@ -1,11 +1,5 @@
 
 /* Header */
-header {
-  display: flex;
-  justify-content: flex-end;
-  background-color: var(--color-primary); /* Même couleur de header que sur la page d'accueil */
-  padding: 10px 20px;
-}
 
 .header-buttons .btn-login,
 .header-buttons .btn-signup {
@@ -77,16 +71,4 @@ header {
 
 .btn-submit:hover {
   background-color: var(--color-secondary-fox); /* Effet similaire à la page d'accueil (hover) */
-}
-
-/* Footer */
-footer {
-  background-color: var(--color-primary); /* Couleur similaire à la page d'accueil */
-  padding: 10px 0;
-}
-
-.slogan {
-  color: var(--color-white);
-  font-size: 24px;
-  font-weight: bold;
 }
