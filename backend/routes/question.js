@@ -93,7 +93,7 @@ router.get('/', async (req, res) => {
   const { UserID, Subject, Level } = req.query; // Assuming these are passed as query params
 
   try {
-    // Retrieve the recent questions the user has answered successfully (today or yesterday)
+    // Retrieve the recent questions the user has answered successfully
     const recentResults = await Result.findAll({
       where: {
         UserID,
