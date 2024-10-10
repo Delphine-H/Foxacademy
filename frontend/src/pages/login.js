@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom'
 import '../styles/login.css';
-import logo from '../assets/Foxacademy-logo.png';
+import logo from '../assets/Logo_Fox.png';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -49,7 +49,7 @@ const Login = () => {
 
       {/* Logo principal */}
       <div className="logo-container">
-        <img src={logo} alt="Foxacademy Logo" className="logo" />
+        <img src={logo} alt="Logo Fox" className="logo" />
       </div>
 
       {/* Formulaire de connexion */}
