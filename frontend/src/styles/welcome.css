@@ -4,12 +4,6 @@ body {
 }
 
 /* Header */
-header {
-  display: flex;
-  justify-content: flex-end;
-  background-color: var(--color-primary);
-  padding: 20px;
-}
 
 .header-buttons .btn-login,
 .header-buttons .btn-signup {
@@ -45,6 +39,7 @@ header {
 
 .banner-content img {
   max-width: 250px;
+  border-radius: 0;
 }
 
 .banner-content h1 {

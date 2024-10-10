@@ -1,23 +1,19 @@
 
 /* Header */
 
-.header-buttons .btn-login,
 .header-buttons .btn-signup {
   padding: 10px 20px;
-  margin-left: 10px;
+  margin: 0 auto; /* Centrage des boutons */
+  display: flex;
   border: none;
   cursor: pointer;
   border-radius: 5px;
+  background-color: var(--color-secondary-fox); /* Même couleur que sur la page d'accueil */
 }
 
 .btn-login {
-  background-color: var(--color-white); /* Même couleur que sur la page d'accueil */
+  background-color: var(--color-secondary-fox); /* Même couleur que sur la page d'accueil */
   color: var(--color-primary); /* Même style que sur la page d'accueil */
-}
-
-.btn-signup {
-  background-color: var(--color-secondary-fox); /* Harmonisation des couleurs */
-  color: var(--color-white);
 }
 
 /* Logo */
@@ -36,10 +32,10 @@
   flex-direction: column;
   width: 300px;
   margin: 0 auto;
-  background-color: var(--color-white); /* Formulaire sur fond blanc */
+  background-color: var(--color-primary); /* Formulaire sur fond blanc */
   padding: 30px;
-  border-radius: 10px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 40px;
+  box-shadow: 0 4px 20px var(--color-primary);
 }
 
 .login-form label {

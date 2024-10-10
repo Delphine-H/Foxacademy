@@ -36,7 +36,7 @@ header {
   display: flex;
   justify-content: flex-end;
   background-color: var(--color-primary); /* Même couleur de header que sur la page d'accueil */
-  padding: 10px 20px;
+  padding: 50px 20px;
 }
 
 /* Body */
@@ -50,9 +50,10 @@ body {
 
 
 /* Footer */
-footer {
+.footer-general {
   background-color: var(--color-primary); /* Couleur similaire à la page d'accueil */
   padding: 10px 0;
+  margin-top: 150px;
 }
 
 .slogan {
