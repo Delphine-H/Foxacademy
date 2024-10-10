@@ -74,7 +74,6 @@ const Register = () => {
           <button className="btn-login" onClick={() => window.location.href = '/login'}>
             Connexion
           </button>
-          <button className="btn-signup">Inscription</button>
         </div>
       </header>
 
@@ -237,7 +236,7 @@ const Register = () => {
       </div>
 
       {/* Footer */}
-      <footer>
+      <footer className='footer-general'>
         <p className="slogan">LEARN & PLAY</p>
       </footer>
     </div>

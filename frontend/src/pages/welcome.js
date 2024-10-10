@@ -1,6 +1,7 @@
 import React from 'react';
 import '../styles/welcome.css';
 import { Link } from 'react-router-dom';
+import logo from '../assets/Logo_Fox.png';
 
 const Welcome = () => {
   return (
@@ -9,13 +10,12 @@ const Welcome = () => {
         <header>
           <div className="header-buttons">
             <Link className={"btn-login"} to="/login"> Connexion </Link>
-            <Link className={"btn-signup"} to="/register"> Inscription </Link>
           </div>
         </header>
         {/* Bannière principale */}
         <section className="banner">
           <div className="banner-content">
-            <img src="Logo_Fox.png" alt="Fox Logo" className="logo" />
+            <img src={logo} alt="Fox Logo" className="logo" />
             <h1>Bienvenue à FoxAcademy</h1>
             <p>Où l’apprentissage devient un jeu d’enfant ! Explorez, apprenez et jouez avec nous.</p>
             <Link className={"btn-cta"} to="/login">Commencez à apprendre</Link>
