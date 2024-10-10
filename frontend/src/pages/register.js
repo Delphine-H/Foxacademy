@@ -69,7 +69,7 @@ const Register = () => {
   return (
     <div>
       {/* Header */}
-      <header>
+      <header className='header-general' style={{ marginBottom: '100px' }}>
         <div className="header-buttons">
           <button className="btn-login" onClick={() => window.location.href = '/login'}>
             Connexion
