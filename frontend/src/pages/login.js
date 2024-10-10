@@ -41,9 +41,8 @@ const Login = () => {
   return (
     <div>
       {/* Header */}
-      <header>
+      <header className='header-general' style={{ marginBottom: '100px' }}>
         <div className="header-buttons">
-            <Link className={"btn-login"} to="/login"> Connexion </Link>
             <Link className={"btn-signup"} to="/register"> Inscription </Link>
           </div>
       </header>
@@ -57,7 +56,7 @@ const Login = () => {
       <div className="login-form">
         <h2>Connexion</h2>
         <form onSubmit={handleLogin}>
-          <div>
+          <div style={{ paddingTop: '30px' }}>
             <label>Email:</label>
             <input
               type="email"
@@ -66,7 +65,7 @@ const Login = () => {
               required
             />
           </div>
-          <div>
+          <div style={{ paddingTop: '30px' }}>
             <label>Password:</label>
             <input
               type="password"
@@ -76,12 +75,12 @@ const Login = () => {
             />
           </div>
           {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
-          <button type="submit" className="btn-submit">Se connecter</button>
+          <button style={{ marginTop: '50px' }} type="submit" className="btn-submit">Se connecter</button>
         </form>
       </div>
 
       {/* Footer */}
-      <footer>
+      <footer className='footer-general'>
         <p className="slogan">LEARN & PLAY</p>
       </footer>
     </div>
