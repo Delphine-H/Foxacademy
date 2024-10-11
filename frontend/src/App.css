@@ -2,11 +2,7 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
+/* Animation logo */
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
@@ -20,19 +16,64 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  font-size: calc(10px + 2vmin); /* Utilisation des unités relatives */
   color: white;
 }
 
+/* Lien avec style de couleur personnalisé */
 .App-link {
   color: #61dafb;
 }
 
+/* Animation pour le logo */
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+/* --- MEDIA QUERIES --- */
+
+/* Pour les petits écrans (smartphones) */
+@media (max-width: 768px) {
+  .App-header {
+    min-height: 50vh; /* Réduction de la hauteur pour les petits écrans */
+    font-size: calc(8px + 2vmin); /* Réduire la taille de la police */
+    padding: 20px;
+  }
+
+  .App-logo {
+    width: 150px; /* Réduire la taille du logo */
+  }
+}
+
+/* Pour les très petits écrans (smartphones) */
+@media (max-width: 480px) {
+  .App-header {
+    font-size: calc(6px + 2vmin); /* Taille de police encore plus petite */
+    padding: 15px;
+  }
+
+  .App-logo {
+    width: 100px; /* Taille du logo adaptée aux très petits écrans */
+  }
+
+  .App-link {
+    font-size: 14px; /* Taille du lien réduite */
+  }
+}
+
+/* Pour les grands écrans (tablettes et desktops) */
+@media (min-width: 1200px) {
+  .App-header {
+    min-height: 100vh; /* Garde la hauteur à 100vh pour les grands écrans */
+    font-size: calc(12px + 2vmin); /* Agrandissement de la police pour les grands écrans */
+  }
+
+  .App-logo {
+    width: 300px; /* Taille du logo augmentée pour les grands écrans */
   }
 }

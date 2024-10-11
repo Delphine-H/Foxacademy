@@ -1,0 +1,153 @@
+
+body {
+  line-height: 1.6;
+}
+
+/* Header */
+
+.header-buttons .btn-login,
+.header-buttons .btn-signup {
+  padding: 10px 20px;
+  margin-left: 10px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+/* Bannière principale */
+.banner {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  padding: 50px 20px;
+  text-align: center;
+}
+
+.banner-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.banner-content img {
+  max-width: 250px;
+  border-radius: 0;
+}
+
+.banner-content h1 {
+  font-size: 3em;
+  margin-bottom: 10px;
+}
+
+.banner-content p {
+  font-size: 1.2em;
+  margin-bottom: 30px;
+}
+
+
+/* À propos */
+.about {
+  padding: 50px 20px;
+  background-color: var(--color-background);
+}
+
+.about h2 {
+  font-size: 2em;
+  margin-bottom: 20px;
+}
+
+.about p {
+  max-width: 700px;
+  margin: 0 auto;
+  font-size: 1.1em;
+}
+
+/* Fonctionnalités */
+.features {
+  background-color: var(--color-white);
+  padding: 50px 20px;
+}
+
+.features h2 {
+  font-size: 2em;
+  margin-bottom: 40px;
+}
+
+.feature {
+  margin-bottom: 30px;
+}
+
+.feature h3 {
+  font-size: 1.5em;
+  color: var(--color-primary);
+}
+
+.feature p {
+  font-size: 1.1em;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Témoignages */
+.testimonials {
+  background-color: var(--color-background);
+  padding: 50px 20px;
+}
+
+.testimonials h2 {
+  font-size: 2em;
+  margin-bottom: 20px;
+}
+
+blockquote {
+  font-size: 1.2em;
+  max-width: 600px;
+  margin: 20px auto;
+  color: var(--color-text);
+  font-style: italic;
+}
+
+/* Bouton d'appel à l'action */
+.cta-section {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  padding: 50px 20px;
+}
+
+.cta-section h2 {
+  font-size: 2.5em;
+  margin-bottom: 20px;
+}
+
+.cta-section p {
+  font-size: 1.2em;
+  margin-bottom: 30px;
+}
+
+.btn-signup-large {
+  background-color: var(--color-secondary-fox);
+  color: var(--color-white);
+  padding: 15px 30px;
+  font-size: 1.5em;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.btn-signup-large:hover {
+  background-color: var(--color-secondary-fox);
+}
+
+/* Footer */
+footer {
+  background-color: var(--color-primary);
+  padding: 10px 0;
+}
+
+.slogan {
+  color: var(--color-white);
+  font-size: 24px;
+  font-weight: bold;
+}
+
+a {
+  text-decoration: none;
+}
