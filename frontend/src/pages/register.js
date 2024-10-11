@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import '../styles/register.css';
-import logo from '../assets/Foxacademy-logo.png';
+import logo from '../assets/Logo_Fox.png';
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -69,20 +70,23 @@ const Register = () => {
   return (
     <div>
       {/* Header */}
-      <header className="header-title">
-      <h1 className="title-fox">Fox</h1>
-      <h1 className="title-academy">Academy</h1>
+      <header className="header-container">
+        <div className="header-title">
+          <Link to='/'>
+          <h1 className="title-fox">Fox
+            <span style= {{color: 'var(--color-text)'}}> Academy </span></h1>
+            </Link>
+          </div>
         <div className="header-buttons">
-          <button className="btn-menu" onClick={() => window.location.href = '/menu'}>
+          <button className="btn-cta" onClick={() => window.location.href = '/login'}>
             Connexion
           </button>
-
         </div>
       </header>
 
       {/* Logo principal */}
       <div className="logo-container">
-        <img src={logo} alt="Foxacademy Logo" className="logo" />
+        <img src={logo} alt="Fox Logo" className="logo" />
       </div>
 
       {/* Formulaire d'inscription */}
@@ -234,7 +238,7 @@ const Register = () => {
           </div>
 
           {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
-          <button type="submit" className="btn-submit">S'inscrire</button>
+          <button type="submit" className="btn-cta">S'inscrire</button>
         </form>
       </div>
 
