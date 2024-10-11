@@ -9,18 +9,20 @@ const Welcome = () => {
         {/* Header */}
         <header>
           <div className="header-buttons">
-            <Link className={"btn-login"} to="/login"> Connexion </Link>
+            <Link className='btn-cta' to="/login"> Connexion </Link>
           </div>
         </header>
+
         {/* Bannière principale */}
         <section className="banner">
           <div className="banner-content">
             <img src={logo} alt="Fox Logo" className="logo" />
-            <h1>Bienvenue à FoxAcademy</h1>
-            <p>Où l’apprentissage devient un jeu d’enfant ! Explorez, apprenez et jouez avec nous.</p>
-            <Link className={"btn-cta"} to="/login">Commencez à apprendre</Link>
-          </div>
-        </section>
+            <h1>Bienvenue à <span className="title-fox">Fox</span><span className="title-academy">Academy</span></h1>
+    <p>Où l’apprentissage devient un jeu d’enfant ! Explorez, apprenez et jouez avec nous.</p>
+    <Link className="btn-cta" to="/login">Commencez à apprendre</Link>
+  </div>
+</section>
+
         {/* À propos */}
         <section className="about">
           <h2>À propos de FoxAcademy</h2>
@@ -56,7 +58,7 @@ const Welcome = () => {
         <section className="cta-section">
           <h2>Prêt à commencer ?</h2>
           <p>Inscrivez-vous dès maintenant et rejoignez des milliers d'enfants qui apprennent tout en s'amusant !</p>
-          <Link className={"btn-signup-large"} to="/register">C'est parti !</Link>
+          <Link className="btn-cta" to="/register">C'est parti !</Link>
         </section>
         {/* Footer */}
         <footer>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 import '../styles/login.css';
 import logo from '../assets/Logo_Fox.png';
 
@@ -41,9 +41,15 @@ const Login = () => {
   return (
     <div>
       {/* Header */}
-      <header className='header-general' style={{ marginBottom: '100px' }}>
+      <header className='header-container' style={{ marginBottom: '100px' }}>
+      <div className="header-title">
+        <Link to="/">
+          <h1 className="title-fox">Fox
+            <span style= {{color: 'var(--color-text)'}}> Academy </span></h1>
+            </Link>
+          </div>
         <div className="header-buttons">
-            <Link className={"btn-signup"} to="/register"> Inscription </Link>
+            <Link className={"btn-cta"} to="/register"> Inscription </Link>
           </div>
       </header>
 
@@ -75,7 +81,7 @@ const Login = () => {
             />
           </div>
           {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
-          <button style={{ marginTop: '50px' }} type="submit" className="btn-submit">Se connecter</button>
+          <button style={{ marginTop: '50px' }} type="submit" className="btn-cta">Se connecter</button>
         </form>
       </div>
 
