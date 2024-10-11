@@ -14,16 +14,6 @@ body {
   border-radius: 5px;
 }
 
-.btn-login {
-  background-color: var(--color-white);
-  color: var(--color-primary);
-}
-
-.btn-signup {
-  background-color: var(--color-secondary-fox);
-  color: var(--color-white);
-}
-
 /* Bannière principale */
 .banner {
   background-color: var(--color-primary);
@@ -52,19 +42,6 @@ body {
   margin-bottom: 30px;
 }
 
-.btn-cta {
-  background-color: var(--color-secondary-fox);
-  color: var(--color-white);
-  padding: 15px 20px;
-  border: none;
-  cursor: pointer;
-  font-size: 1.2em;
-  border-radius: 5px;
-}
-
-.btn-cta:hover {
-  background-color: var(--color-secondary-fox);
-}
 
 /* À propos */
 .about {

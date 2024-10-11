@@ -1,3 +1,31 @@
+/* Header Container */
+.header-container {
+  display: flex;
+  justify-content: space-between; /* Titre à gauche, bouton à droite */
+  align-items: center;
+  padding: 10px 20px;
+  background-color: var(--color-primary); /* Fond blanc (optionnel) */
+}
+
+/* Conteneur pour les titres Fox et Academy */
+.header-title {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+/* Style pour le titre "Fox" */
+.title-fox {
+  color: var(--color-secondary-fox);
+  font-size: 46px;
+  margin-right: 10px;
+}
+
+/* Style pour le titre "Academy" */
+.title-academy {
+  color: var(--color-text);
+  font-size: 46px;
+}
 
 /* Header */
 
@@ -8,7 +36,7 @@
   border: none;
   cursor: pointer;
   border-radius: 5px;
-  background-color: var(--color-secondary-fox); /* Même couleur que sur la page d'accueil */
+  background-color: var(--color-text); /* Même couleur que sur la page d'accueil */
 }
 
 .btn-login {
@@ -16,15 +44,6 @@
   color: var(--color-primary); /* Même style que sur la page d'accueil */
 }
 
-/* Logo */
-.logo-container {
-  margin: 50px auto;
-}
-
-.logo {
-  max-width: 150px; /* Taille similaire que la page d'accueil */
-  border-radius: 50%; /* Logo en cercle pour l'homogénéité */
-}
 
 /* Formulaire login */
 .login-form {
@@ -52,19 +71,4 @@
   background-color: var(--color-inputs); /* inputs (plus doux) */
   border-radius: 5px;
   font-size: 16px;
-}
-
-.btn-submit {
-  background-color: var(--color-secondary-fox); /* Couleur similaire à la page d'accueil */
-  color: var(--color-white);
-  border: none;
-  margin-top: 20px;
-  padding: 10px;
-  cursor: pointer;
-  border-radius: 5px;
-  font-size: 18px;
-}
-
-.btn-submit:hover {
-  background-color: var(--color-secondary-fox); /* Effet similaire à la page d'accueil (hover) */
 }
