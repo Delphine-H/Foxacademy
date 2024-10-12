@@ -44,7 +44,7 @@ const User = sequelize.define('User', {
     defaultValue: 0,
   },
   SchoolID: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.TEXT,
     references: {
       model: 'schools',
       key: 'SchoolID',
