@@ -20,7 +20,7 @@ const Cohort = sequelize.define('Cohort', {
     allowNull: false,
   },
   SchoolID: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.TEXT,
     references: {
       model: 'schools', 
       key: 'SchoolID',
