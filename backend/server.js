@@ -24,6 +24,7 @@ const profileRoutes = require('./routes/profile');
 const questionRoutes = require('./routes/question');
 const resultRoutes = require('./routes/result');
 const dashboardRoutes = require('./routes/dashboard');
+const gameRoutes = require('./routes/game');
 
 // Redirect to the route file
 app.use('/school', schoolRoutes);
@@ -33,6 +34,7 @@ app.use('/profile', profileRoutes);
 app.use('/question', questionRoutes);
 app.use('/result', resultRoutes);
 app.use('/dashboard', dashboardRoutes);
+app.use('/game', gameRoutes);
 
 // Define associations
 // School & Cohort
