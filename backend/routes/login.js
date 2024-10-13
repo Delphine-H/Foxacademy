@@ -22,6 +22,7 @@ router.post('/', async (req, res) => {
       process.env.JWT_SECRET,
       { expiresIn: '1h' },
     );
+    console.log('Token generated for user:', user.UserID);
     console.log('Token generated:', token);
     return res.json({ token, role: user.Role });
   } catch (err) {
