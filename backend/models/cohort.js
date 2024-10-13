@@ -1,7 +1,7 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/database');
 
-const Cohort = sequelize.define('Cohort', {
+const Cohort = sequelize.define('cohort', {
   CohortID: {
     type: DataTypes.INTEGER,
     autoIncrement: true,
@@ -26,6 +26,8 @@ const Cohort = sequelize.define('Cohort', {
       key: 'SchoolID',
     },
   },
+}, {
+  tableName: 'cohorts',
 });
 
 module.exports = Cohort;
