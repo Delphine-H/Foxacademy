@@ -7,6 +7,11 @@ const Answer = require('../models/answer');
 const Result = require('../models/result');
 const bcrypt = require('bcryptjs');
 
+const user1ID = '9c78d8fc-84fe-445b-8c75-92c59e0422b5';
+const user2ID = '45c017b3-ba3a-4f9b-90e7-532f28b2a7f3';
+const user3ID = '75df964a-c580-470b-839c-08435fca205a';
+const newStudentID = 'a1b2c3d4-e5f6-7890-abcd-ef1234567890'; // Nouvel ID pour l'élève
+
 async function seedDatabase() {
   const transaction = await sequelize.transaction();
   try {
@@ -65,12 +70,14 @@ async function seedDatabase() {
     }, { transaction });
 
     // Cryptage des mots de passe
-    const hashedPassword1 = await bcrypt.hash('password123', 10);
+    const hashedPassword1 = await bcrypt.hash('password1', 10);
     const hashedPassword2 = await bcrypt.hash('password2', 10);
     const hashedPassword3 = await bcrypt.hash('password3', 10);
+    const hashedPasswordNewStudent = await bcrypt.hash('password4', 10);
 
-    // Création des utilisateurs
+    // Création des utilisateurs avec des UserID fixes
     const user1 = await User.create({
+      UserID: user1ID,
       Name: 'User1',
       Firstname: 'Firstname1',
       Email: 'user1@example.com',
@@ -82,6 +89,7 @@ async function seedDatabase() {
     }, { transaction });
 
     const user2 = await User.create({
+      UserID: user2ID,
       Name: 'User2',
       Firstname: 'Firstname2',
       Email: 'user2@example.com',
@@ -93,6 +101,7 @@ async function seedDatabase() {
     }, { transaction });
 
     const user3 = await User.create({
+      UserID: user3ID,
       Name: 'User3',
       Firstname: 'Firstname3',
       Email: 'user3@example.com',
@@ -101,6 +110,19 @@ async function seedDatabase() {
       Password: hashedPassword3,
       SchoolID: school3.SchoolID,
       CohortID: cohort3.CohortID
+    }, { transaction });
+
+    // Création du nouvel élève dans la cohorte B
+    const newStudent = await User.create({
+      UserID: newStudentID,
+      Name: 'User4',
+      Firstname: 'Firstname4',
+      Email: 'newstudent@example.com',
+      Level: 'CP',
+      Role: 'Elève',
+      Password: hashedPasswordNewStudent,
+      SchoolID: school2.SchoolID,
+      CohortID: cohort2.CohortID
     }, { transaction });
 
     // Création des questions
@@ -183,9 +205,9 @@ async function seedDatabase() {
       isCorrect: false
     }, { transaction });
 
-    // Création des résultats
+    // Création des résultats pour les utilisateurs existants
     await Result.create({
-      UserID: user1.UserID,
+      UserID: user1ID,
       QuestionID: question1.QuestionID,
       Score: 1,
       LastEvaluated: new Date(),
@@ -193,7 +215,7 @@ async function seedDatabase() {
     }, { transaction });
 
     await Result.create({
-      UserID: user1.UserID,
+      UserID: user1ID,
       QuestionID: question2.QuestionID,
       Score: 0,
       LastEvaluated: new Date(),
@@ -201,12 +223,26 @@ async function seedDatabase() {
     }, { transaction });
 
     await Result.create({
-      UserID: user3.UserID,
+      UserID: user3ID,
       QuestionID: question3.QuestionID,
       Score: 1,
       LastEvaluated: new Date(),
       Subject: 'Géographie'
     }, { transaction });
+
+    // Création des résultats pour le nouvel élève
+    const questions = [question1, question2, question3];
+    for (const question of questions) {
+      for (let i = 1; i <= 3; i++) {
+        await Result.create({
+          UserID: newStudentID,
+          QuestionID: question.QuestionID,
+          Score: i % 2, // Alternance des scores 0 et 1
+          LastEvaluated: new Date(),
+          Subject: 'Géographie'
+        }, { transaction });
+      }
+    }
 
     await transaction.commit();
     console.log('Base de données préremplie avec succès');
