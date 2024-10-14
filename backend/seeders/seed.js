@@ -1,3 +1,4 @@
+const bcrypt = require('bcryptjs');
 const sequelize = require('../config/database');
 const School = require('../models/school');
 const Cohort = require('../models/cohort');
@@ -5,26 +6,12 @@ const User = require('../models/user');
 const Question = require('../models/question');
 const Answer = require('../models/answer');
 const Result = require('../models/result');
-const bcrypt = require('bcryptjs');
-
-const user1ID = '9c78d8fc-84fe-445b-8c75-92c59e0422b5';
-const user2ID = '45c017b3-ba3a-4f9b-90e7-532f28b2a7f3';
-const user3ID = '75df964a-c580-470b-839c-08435fca205a';
-const newStudentID = 'a1b2c3d4-e5f6-7890-abcd-ef1234567890'; // Nouvel ID pour l'élève
 
 async function seedDatabase() {
   const transaction = await sequelize.transaction();
   try {
     await sequelize.sync({ force: true, transaction }); // Réinitialise la base de données
   
-    // Synchroniser les modèles dans le bon ordre
-    await School.sync({ transaction });
-    await Cohort.sync({ transaction });
-    await User.sync({ transaction });
-    await Question.sync({ transaction });
-    await Answer.sync({ transaction });
-    await Result.sync({ transaction });
-
     // Création des écoles
     const school1 = await School.create({
       SchoolID: "SCHOOL1",
@@ -44,7 +31,7 @@ async function seedDatabase() {
       SchoolID: "SCHOOL3",
       SchoolName: 'École Gamma',
       DepartmentCode: '62000',
-      City: 'Arras'
+      City: 'Lens'
     }, { transaction });
 
     // Création des cohortes
@@ -75,9 +62,8 @@ async function seedDatabase() {
     const hashedPassword3 = await bcrypt.hash('password3', 10);
     const hashedPasswordNewStudent = await bcrypt.hash('password4', 10);
 
-    // Création des utilisateurs avec des UserID fixes
+    // Création des utilisateurs sans UserID prédéfinis
     const user1 = await User.create({
-      UserID: user1ID,
       Name: 'User1',
       Firstname: 'Firstname1',
       Email: 'user1@example.com',
@@ -89,7 +75,6 @@ async function seedDatabase() {
     }, { transaction });
 
     const user2 = await User.create({
-      UserID: user2ID,
       Name: 'User2',
       Firstname: 'Firstname2',
       Email: 'user2@example.com',
@@ -101,7 +86,6 @@ async function seedDatabase() {
     }, { transaction });
 
     const user3 = await User.create({
-      UserID: user3ID,
       Name: 'User3',
       Firstname: 'Firstname3',
       Email: 'user3@example.com',
@@ -114,7 +98,6 @@ async function seedDatabase() {
 
     // Création du nouvel élève dans la cohorte B
     const newStudent = await User.create({
-      UserID: newStudentID,
       Name: 'User4',
       Firstname: 'Firstname4',
       Email: 'newstudent@example.com',
@@ -207,7 +190,7 @@ async function seedDatabase() {
 
     // Création des résultats pour les utilisateurs existants
     await Result.create({
-      UserID: user1ID,
+      UserID: user1.UserID,
       QuestionID: question1.QuestionID,
       Score: 1,
       LastEvaluated: new Date(),
@@ -215,7 +198,7 @@ async function seedDatabase() {
     }, { transaction });
 
     await Result.create({
-      UserID: user1ID,
+      UserID: user1.UserID,
       QuestionID: question2.QuestionID,
       Score: 0,
       LastEvaluated: new Date(),
@@ -223,7 +206,7 @@ async function seedDatabase() {
     }, { transaction });
 
     await Result.create({
-      UserID: user3ID,
+      UserID: user3.UserID,
       QuestionID: question3.QuestionID,
       Score: 1,
       LastEvaluated: new Date(),
@@ -235,7 +218,7 @@ async function seedDatabase() {
     for (const question of questions) {
       for (let i = 1; i <= 3; i++) {
         await Result.create({
-          UserID: newStudentID,
+          UserID: newStudent.UserID,
           QuestionID: question.QuestionID,
           Score: i % 2, // Alternance des scores 0 et 1
           LastEvaluated: new Date(),
