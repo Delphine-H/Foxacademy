@@ -44,7 +44,7 @@ const User = sequelize.define('User', {
     defaultValue: 0,
   },
   SchoolID: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.TEXT,
     references: {
       model: 'schools',
       key: 'SchoolID',
@@ -53,12 +53,13 @@ const User = sequelize.define('User', {
   CohortID: {
     type: DataTypes.INTEGER,
     references: {
-      model: 'Cohorts',
+      model: 'cohorts',
       key: 'CohortID',
     },
   },
 }, {
   timestamps: true,
+  tableName: 'users',
 });
 
 module.exports = User;
