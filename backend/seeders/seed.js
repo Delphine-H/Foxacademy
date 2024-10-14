@@ -1,78 +1,238 @@
+const bcrypt = require('bcryptjs');
 const sequelize = require('../config/database');
 const School = require('../models/school');
 const Cohort = require('../models/cohort');
 const User = require('../models/user');
 const Question = require('../models/question');
 const Answer = require('../models/answer');
-const bcrypt = require('bcryptjs'); // Importer bcryptjs
+const Result = require('../models/result');
 
 async function seedDatabase() {
   const transaction = await sequelize.transaction();
   try {
     await sequelize.sync({ force: true, transaction }); // Réinitialise la base de données
-
-    // Création d'une école
-    const schoolData = {
-      SchoolName: 'École Primaire Exemple',
+  
+    // Création des écoles
+    const school1 = await School.create({
+      SchoolID: "SCHOOL1",
+      SchoolName: 'École Alpha',
       DepartmentCode: '75000',
       City: 'Paris'
-    };
-    const school = await School.create(schoolData, { transaction });
-    console.log('École créée avec succès :', school);
+    }, { transaction });
 
-    // Création d'une cohorte
-    const cohortData = {
-      Name: 'Cohorte 1',
+    const school2 = await School.create({
+      SchoolID: "SCHOOL2",
+      SchoolName: 'École Beta',
+      DepartmentCode: '59000',
+      City: 'Lille'
+    }, { transaction });
+
+    const school3 = await School.create({
+      SchoolID: "SCHOOL3",
+      SchoolName: 'École Gamma',
+      DepartmentCode: '62000',
+      City: 'Lens'
+    }, { transaction });
+
+    // Création des cohortes
+    const cohort1 = await Cohort.create({
+      Name: 'Cohorte A',
       Year: 2023,
       Level: 'CE1',
-      SchoolID: school.SchoolID
-    };
-    const cohort = await Cohort.create(cohortData, { transaction });
-    console.log('Cohorte créée avec succès :', cohort);
+      SchoolID: school1.SchoolID
+    }, { transaction });
 
-    // Cryptage du mot de passe
-    const hashedPassword = await bcrypt.hash('password123', 10);
+    const cohort2 = await Cohort.create({
+      Name: 'Cohorte B',
+      Year: 2023,
+      Level: 'CP',
+      SchoolID: school2.SchoolID
+    }, { transaction });
 
-    // Création d'un utilisateur
-    const userData = {
-      Name: 'John',
-      Firstname: 'Doe',
-      Email: 'john.doe@example.com',
+    const cohort3 = await Cohort.create({
+      Name: 'Cohorte C',
+      Year: 2023,
+      Level: 'CE2',
+      SchoolID: school3.SchoolID
+    }, { transaction });
+
+    // Cryptage des mots de passe
+    const hashedPassword1 = await bcrypt.hash('password1', 10);
+    const hashedPassword2 = await bcrypt.hash('password2', 10);
+    const hashedPassword3 = await bcrypt.hash('password3', 10);
+    const hashedPasswordNewStudent = await bcrypt.hash('password4', 10);
+
+    // Création des utilisateurs sans UserID prédéfinis
+    const user1 = await User.create({
+      Name: 'User1',
+      Firstname: 'Firstname1',
+      Email: 'user1@example.com',
       Level: 'CE1',
       Role: 'Elève',
-      Password: hashedPassword, // Utiliser le mot de passe crypté
-      SchoolID: school.SchoolID,
-      CohortID: cohort.CohortID
-    };
-    const user = await User.create(userData, { transaction });
-    console.log('Utilisateur créé avec succès', user);
+      Password: hashedPassword1,
+      SchoolID: school1.SchoolID,
+      CohortID: cohort1.CohortID
+    }, { transaction });
 
-    // Création d'une question
-    const questionData = {
-      Text: 'Quelle est la capitale de la France ?',
+    const user2 = await User.create({
+      Name: 'User2',
+      Firstname: 'Firstname2',
+      Email: 'user2@example.com',
+      Level: 'CE1',
+      Role: 'Professeur',
+      Password: hashedPassword2,
+      SchoolID: school2.SchoolID,
+      CohortID: cohort2.CohortID
+    }, { transaction });
+
+    const user3 = await User.create({
+      Name: 'User3',
+      Firstname: 'Firstname3',
+      Email: 'user3@example.com',
+      Level: 'CE1',
+      Role: 'Elève',
+      Password: hashedPassword3,
+      SchoolID: school3.SchoolID,
+      CohortID: cohort3.CohortID
+    }, { transaction });
+
+    // Création du nouvel élève dans la cohorte B
+    const newStudent = await User.create({
+      Name: 'User4',
+      Firstname: 'Firstname4',
+      Email: 'newstudent@example.com',
+      Level: 'CP',
+      Role: 'Elève',
+      Password: hashedPasswordNewStudent,
+      SchoolID: school2.SchoolID,
+      CohortID: cohort2.CohortID
+    }, { transaction });
+
+    // Création des questions
+    const question1 = await Question.create({
+      Text: 'Quelle est la capitale de la France?',
       Subject: 'Géographie',
       Type: 'QCM',
       Level: 'CE1',
-      AuthorID: user.UserID
-    };
-    const question = await Question.create(questionData, { transaction });
-    console.log('Question créée avec succès :', question);
+      AuthorID: user1.UserID
+    }, { transaction });
 
-    // Création d'une réponse
-    const answerData = {
+    const question2 = await Question.create({
+      Text: 'Quelle est la capitale de l\'Italie?',
+      Subject: 'Géographie',
+      Type: 'QCM',
+      Level: 'CE1',
+      AuthorID: user2.UserID
+    }, { transaction });
+
+    const question3 = await Question.create({
+      Text: 'Quelle est la capitale de l\'Espagne?',
+      Subject: 'Géographie',
+      Type: 'QCM',
+      Level: 'CE1',
+      AuthorID: user3.UserID
+    }, { transaction });
+
+    // Création des réponses pour chaque question
+    await Answer.create({
       text: 'Paris',
-      QuestionID: question.QuestionID,
+      QuestionID: question1.QuestionID,
       isCorrect: true
-    };
-    await Answer.create(answerData, { transaction });
-    console.log('Réponse créée avec succès');
+    }, { transaction });
+
+    await Answer.create({
+      text: 'Lyon',
+      QuestionID: question1.QuestionID,
+      isCorrect: false
+    }, { transaction });
+
+    await Answer.create({
+      text: 'Marseille',
+      QuestionID: question1.QuestionID,
+      isCorrect: false
+    }, { transaction });
+
+    await Answer.create({
+      text: 'Rome',
+      QuestionID: question2.QuestionID,
+      isCorrect: true
+    }, { transaction });
+
+    await Answer.create({
+      text: 'Milan',
+      QuestionID: question2.QuestionID,
+      isCorrect: false
+    }, { transaction });
+
+    await Answer.create({
+      text: 'Naples',
+      QuestionID: question2.QuestionID,
+      isCorrect: false
+    }, { transaction });
+
+    await Answer.create({
+      text: 'Madrid',
+      QuestionID: question3.QuestionID,
+      isCorrect: true
+    }, { transaction });
+
+    await Answer.create({
+      text: 'Barcelone',
+      QuestionID: question3.QuestionID,
+      isCorrect: false
+    }, { transaction });
+
+    await Answer.create({
+      text: 'Valence',
+      QuestionID: question3.QuestionID,
+      isCorrect: false
+    }, { transaction });
+
+    // Création des résultats pour les utilisateurs existants
+    await Result.create({
+      UserID: user1.UserID,
+      QuestionID: question1.QuestionID,
+      Score: 1,
+      LastEvaluated: new Date(),
+      Subject: 'Géographie'
+    }, { transaction });
+
+    await Result.create({
+      UserID: user1.UserID,
+      QuestionID: question2.QuestionID,
+      Score: 0,
+      LastEvaluated: new Date(),
+      Subject: 'Géographie'
+    }, { transaction });
+
+    await Result.create({
+      UserID: user3.UserID,
+      QuestionID: question3.QuestionID,
+      Score: 1,
+      LastEvaluated: new Date(),
+      Subject: 'Géographie'
+    }, { transaction });
+
+    // Création des résultats pour le nouvel élève
+    const questions = [question1, question2, question3];
+    for (const question of questions) {
+      for (let i = 1; i <= 3; i++) {
+        await Result.create({
+          UserID: newStudent.UserID,
+          QuestionID: question.QuestionID,
+          Score: i % 2, // Alternance des scores 0 et 1
+          LastEvaluated: new Date(),
+          Subject: 'Géographie'
+        }, { transaction });
+      }
+    }
 
     await transaction.commit();
     console.log('Base de données préremplie avec succès');
   } catch (error) {
     await transaction.rollback();
     console.error('Erreur lors du préremplissage de la base de données :', error);
-    process.exit(1); 
+    process.exit(1);
   } finally {
     await sequelize.close();
   }

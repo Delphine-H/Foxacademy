@@ -3,9 +3,9 @@ const sequelize = require('../config/database');
 
 const School = sequelize.define('School', {
   SchoolID: {
-    type: DataTypes.INTEGER,
-    autoIncrement: true,
+    type: DataTypes.TEXT,
     primaryKey: true,
+    allowNull: false,
   },
   SchoolName: {
     type: DataTypes.STRING,
