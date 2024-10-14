@@ -8,7 +8,7 @@ const Result = sequelize.define('Result', {
     primaryKey: true,
   },
   UserID: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.UUID,
     allowNull: false,
     references: {
       model: 'users',
@@ -16,7 +16,7 @@ const Result = sequelize.define('Result', {
     },
   },
   QuestionID: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.UUID,
     allowNull: false,
     references: {
       model: 'questions',
@@ -37,6 +37,7 @@ const Result = sequelize.define('Result', {
   },
 }, {
   timestamps: true,
+  tableName: 'results',
 });
 
 module.exports = Result;
