@@ -1,5 +1,6 @@
 const express = require('express');
 const Result = require('../models/result');
+const User = require('../models/user');
 
 const router = express.Router();
 
@@ -22,6 +23,13 @@ router.post('/', async (req, res) => {
       LastEvaluated,
       Subject,
     });
+
+    // Update the user's total score
+    const user = await User.findByPk(UserID);
+    if (user) {
+      user.TotalScore += Score;
+      await user.save();
+    }
 
     return res.status(201).json({ message: 'Result created successfully', newResult });
   } catch (err) {

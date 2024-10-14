@@ -42,11 +42,10 @@ router.post('/', async (req, res) => {
       SchoolID,
       CohortID,
     });
-    
+
     console.log('User registered successfully', newUser);
     // Respond with a success message and user data
     return res.status(201).json({ message: 'User registered successfully', newUser });
-
   } catch (err) {
     // Handle other errors, such as duplicate emails
     console.error('Error during user creation:', err);
