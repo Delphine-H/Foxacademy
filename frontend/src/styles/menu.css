@@ -1,0 +1,126 @@
+/* Style général */
+body {
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+/* Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--color-primary);
+  padding: 10px 30px;
+  height: 80px;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  width: 80px;
+  height: auto;
+}
+
+/* Boutons de navigation dans le header */
+.top-nav {
+  display: flex;
+  align-items: center;
+}
+
+.top-nav a {
+  text-decoration: none;
+  color: var(--color-primary);
+  font-size: 18px;
+  margin-right: 20px;
+  padding: 8px 15px;
+  background-color: var(--color-white);
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+
+.top-nav a:hover {
+  background-color: var(--color-other);
+}
+
+.menu-button {
+  padding: 10px 20px;
+  background-color: var(--color-secondary-fox);
+  color: var(--color-white);
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.menu-button:hover {
+  background-color: var(--color-secondary-fox);
+}
+
+/* Contenu principal */
+.main-content {
+  flex-grow: 1;
+  padding: 40px;
+  background-color: var(--color-background);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.main-content h1 {
+  font-size: 36px;
+  color: var(text-color);
+  margin-bottom: 20px;
+}
+
+/* Grille des cartes menu */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 150px);
+  grid-gap: 20px;
+}
+
+.card {
+  background-color: var(--color-primary);
+  width: 150px;
+  height: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.card-icon {
+  width: 60px;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.card p {
+  color: var(--color-white);
+  font-size: 16px;
+  text-align: center;
+}
+
+.card:hover {
+  background-color: var(--color-other);
+}
+
+/* Footer */
+.footer {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  text-align: center;
+  padding: 15px 0;
+  font-size: 18px;
+  font-weight: bold;
+}

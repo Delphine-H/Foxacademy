@@ -1,0 +1,97 @@
+/* Style */
+
+:root {
+  /* Colors */
+  --color-background: #f7f7f7;
+  --color-secondary-fox: #FE5617;
+  --color-primary: #00C2BA;
+  --color-white: #FFFFFF;
+  --color-text: #333;
+  --color-heading: #333;
+  --color-border: #e0e0e0;
+  --color-shadow: rgba(0, 0, 0, 0.1);
+  --color-error: #ff0000;
+  --color-success: #00C2BA;
+  --color-warning: #FFA500;
+  --color-info: #00C2BA;
+  --color-inputs: #E9E9E9;
+  --color-other: #028181;
+
+  /* Fonts */
+  --font-family-body: 'Arial', 'Calibri', sans-serif;
+}
+
+  /* buttons */
+
+  .btn-cta {
+    background-color: var(--color-text);
+    color: var(--color-white);
+    padding: 15px 20px;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2em;
+    border-radius: 5px;
+  }
+
+  .btn-cta:hover {
+    background-color: var(--color-secondary-fox);
+  }
+
+
+/* Reset général */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Header */
+
+header {
+  display: flex;
+  justify-content: flex-end;
+  background-color: var(--color-primary); /* Même couleur de header que sur la page d'accueil */
+  padding: 50px 20px;
+}
+
+/* Conteneur pour les titres Fox et Academy */
+.header-title {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+
+/* Logo */
+.logo-container {
+  margin: 50px auto;
+}
+
+.logo {
+  max-width: 150px; /* Taille similaire que la page d'accueil */
+  border-radius: 0px; /* Logo en cercle pour l'homogénéité */
+}
+
+/* Body */
+
+body {
+  font-family: var(--font-family-body);
+  background-color: var(--color-background);
+  color: var(--color-text);
+  text-align: center;
+ }
+
+
+/* Footer */
+
+.footer-general {
+  background-color: var(--color-primary); /* Couleur similaire à la page d'accueil */
+  padding: 10px 0;
+  margin-top: 180px;
+}
+
+.slogan {
+  color: var(--color-white);
+  font-size: 24px;
+  font-weight: bold;
+}
