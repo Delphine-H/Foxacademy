@@ -61,6 +61,9 @@ Question.hasMany(Result, { foreignKey: 'QuestionID' });
 Question.belongsTo(User, { as: 'Author', foreignKey: 'AuthorID' });
 Question.belongsTo(User, { as: 'Validator', foreignKey: 'ValidatorID' });
 
+// Result as LatestResult for Question
+Result.hasMany(Result, { as: 'LatestResult', foreignKey: 'QuestionID' }); 
+
 // Synchronize the database
 sequelize.sync().then(() => {
   console.log('Database synchronized.');
