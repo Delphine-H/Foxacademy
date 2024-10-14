@@ -53,7 +53,7 @@ const User = sequelize.define('User', {
   CohortID: {
     type: DataTypes.INTEGER,
     references: {
-      model: 'Cohorts',
+      model: 'cohorts',
       key: 'CohortID',
     },
   },
