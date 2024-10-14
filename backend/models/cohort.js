@@ -1,7 +1,7 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/database');
 
-const Cohort = sequelize.define('cohort', {
+const Cohort = sequelize.define('Cohort', {
   CohortID: {
     type: DataTypes.INTEGER,
     autoIncrement: true,
