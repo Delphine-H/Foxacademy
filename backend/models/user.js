@@ -57,6 +57,10 @@ const User = sequelize.define('User', {
       key: 'CohortID',
     },
   },
+  Dob: {
+    type: DataTypes.DATE,
+    allowNull: false,
+  },
 }, {
   timestamps: true,
   tableName: 'users',
