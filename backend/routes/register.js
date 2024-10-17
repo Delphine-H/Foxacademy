@@ -7,12 +7,12 @@ const User = require('../models/user');
 // POST: Register a new user
 router.post('/', async (req, res) => {
   const {
-    Name, Firstname, Email, Password, Level, Role, SchoolID, CohortID,
+    Name, Firstname, Email, Dob, Password, Level, Role, SchoolID, CohortID,
   } = req.body;
 
   try {
     // Check that all required fields are present
-    if (!Name || !Firstname || !Email || !Password || !Level || !Role) {
+    if (!Name || !Firstname || !Dob || !Email || !Password || !Level || !Role) {
       return res.status(400).json({ error: 'All fields are required' });
     }
 
@@ -36,6 +36,7 @@ router.post('/', async (req, res) => {
       Name,
       Firstname,
       Email,
+      Dob,
       Password: hashedPassword,
       Level,
       Role,
