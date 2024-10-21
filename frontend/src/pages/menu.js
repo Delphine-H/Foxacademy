@@ -1,6 +1,5 @@
 import React from 'react';
-import './styles/menu.css';
-import 'Foxacademy-logo.png';
+import '../styles/menu.css';
 
 const Menu = () => {
   return (

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom'; // Ajout de useNavigate
 import '../styles/login.css';
 import logo from '../assets/Logo_Fox.png';
 
@@ -8,17 +8,19 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
 
+  const navigate = useNavigate(); // Initialisation du hook useNavigate
+
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('/login', {
+      const response = await fetch('http://localhost:5000/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          email: email,
-          password: password,
+          Email: email,
+          Password: password,
         }),
       });
       if (response.ok) {
@@ -27,8 +29,9 @@ const Login = () => {
         // Stocker le token et le rôle
         localStorage.setItem('token', token);
         localStorage.setItem('role', role);
-        // Rediriger ou afficher un message de succès
-        console.log('Login successful!', token, role);
+        // Rediriger vers la page /menu
+        navigate('/menu'); // Redirection après succès
+        setErrorMessage(''); // Réinitialiser les messages d'erreur
       } else {
         setErrorMessage('Invalid credentials');
       }
@@ -42,15 +45,16 @@ const Login = () => {
     <div>
       {/* Header */}
       <header className='header-container' style={{ marginBottom: '100px' }}>
-      <div className="header-title">
-        <Link to="/">
-          <h1 className="title-fox">Fox
-            <span style= {{color: 'var(--color-text)'}}> Academy </span></h1>
-            </Link>
-          </div>
+        <div className="header-title">
+          <Link to="/">
+            <h1 className="title-fox">Fox
+              <span style= {{color: 'var(--color-text)'}}> Academy </span>
+            </h1>
+          </Link>
+        </div>
         <div className="header-buttons">
-            <Link className={"btn-cta"} to="/register"> Inscription </Link>
-          </div>
+          <Link className={"btn-cta"} to="/register"> Inscription </Link>
+        </div>
       </header>
 
       {/* Logo principal */}
@@ -81,7 +85,9 @@ const Login = () => {
             />
           </div>
           {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
+          <Link to="/menu">
           <button style={{ marginTop: '50px' }} type="submit" className="btn-cta">Se connecter</button>
+        </Link>
         </form>
       </div>
 
