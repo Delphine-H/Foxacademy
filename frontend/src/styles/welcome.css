@@ -136,14 +136,14 @@ blockquote {
   background-color: var(--color-secondary-fox);
 }
 
-/* Footer */
+/* Footer
 footer {
   background-color: var(--color-primary);
   padding: 10px 0;
-}
+} */
 
 .slogan {
-  color: var(--color-white);
+  color: var(--color-primary);
   font-size: 24px;
   font-weight: bold;
 }

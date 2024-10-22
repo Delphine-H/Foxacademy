@@ -4,6 +4,7 @@
   justify-content: space-between; /* Titre à gauche, bouton à droite */
   align-items: center;
   padding: 10px 20px;
+  margin-bottom: 100px;
   background-color: var(--color-primary); /* Fond blanc (optionnel) */
 }
 
@@ -37,7 +38,7 @@
 }
 
 .header-buttons .btn-login:hover {
-  background-color: var(--color-secondary-fox); /* Changement de couleur au hover */
+  background-color: var(--color-secondary); /* Changement de couleur au hover */
 }
 
 /* Header */
@@ -63,17 +64,28 @@
   color: var(--color-white);
 }
 
+body {
+  background-image: url('../assets/Paw_print_Fox.png'); /* Chemin vers votre image */
+  background-repeat: repeat; /* Répéter l'image */
+  background-size: auto; /* Taille de l'image */
+  background-color: var(--color-background); /* Couleur de fond de secours */
+  background-color: var(--color-primary); /* Couleur de fond de secours */
+
+}
+
 /* Formulaire d'inscription */
 .register-form {
   display: flex;
   flex-direction: column;
-  text-align: left;
+  text-align: center;
+  justify-content: center;
   width: 700px;/* Augmenter la largeur du formulaire */
   margin: 0 auto;
-  background-color: var(--color-primary);
+  background-color: var(--color-white);
   padding: 35px;
   border-radius: 40px;
   box-shadow: 0 4px 20px var(--color-primary);
+
 }
 
 /* Style pour les sections du formulaire */

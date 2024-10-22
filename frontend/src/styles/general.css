@@ -2,7 +2,7 @@
 
 :root {
   /* Colors */
-  --color-background: #f7f7f7;
+  --color-background: #F7F7F7;
   --color-secondary-fox: #FE5617;
   --color-primary: #00C2BA;
   --color-white: #FFFFFF;
@@ -61,15 +61,24 @@ header {
   cursor: pointer;
 }
 
-
-/* Logo */
-.logo-container {
-  margin: 50px auto;
+/* Link */
+.link {
+  color: var(--color-primary);
+  text-decoration: none;
+  font-weight: bold;
 }
+
+.link:hover {
+  color: var(--color-secondary-fox);
+}
+
 
 .logo {
   max-width: 150px; /* Taille similaire que la page d'accueil */
-  border-radius: 0px; /* Logo en cercle pour l'homogénéité */
+}
+
+.logo-home {
+  width: 150px;
 }
 
 /* Body */
@@ -82,10 +91,9 @@ body {
  }
 
 
-/* Footer */
-
+/* Footer
 .footer-general {
-  background-color: var(--color-primary); /* Couleur similaire à la page d'accueil */
+  background-color: var(--color-primary); /* Couleur similaire à la page d'accueil
   padding: 10px 0;
   margin-top: 180px;
 }
@@ -94,4 +102,12 @@ body {
   color: var(--color-white);
   font-size: 24px;
   font-weight: bold;
+} */
+
+
+input {
+  padding: 10px;
+  margin: 10px;
+  border-radius: 5px;
+  border: 1px solid var(--color-border);
 }
