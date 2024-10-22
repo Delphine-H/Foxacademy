@@ -44,27 +44,31 @@ const Login = () => {
   return (
     <div>
       {/* Header */}
-      <header className='header-container' style={{ marginBottom: '100px' }}>
+      <header className='header-container' style={{ marginBottom: '130px' }}>
         <div className="header-title">
           <Link to="/">
-            <h1 className="title-fox">Fox
-              <span style= {{color: 'var(--color-text)'}}> Academy </span>
-            </h1>
+          <div>
+        <img src={logo} alt="Logo Fox" className="logo" />
+        </div>
+        
           </Link>
         </div>
+
         <div className="header-buttons">
           <Link className={"btn-cta"} to="/register"> Inscription </Link>
         </div>
       </header>
 
-      {/* Logo principal */}
-      <div className="logo-container">
-        <img src={logo} alt="Logo Fox" className="logo" />
-      </div>
-
       {/* Formulaire de connexion */}
       <div className="login-form">
         <h2>Connexion</h2>
+        <p>
+            Vous n'êtes pas encore inscrits ?{" "}
+            <Link to="/register" className="link">
+              Inscrivez-vous ici
+            </Link>
+            .
+          </p>
         <form onSubmit={handleLogin}>
           <div style={{ paddingTop: '30px' }}>
             <label>Email:</label>
