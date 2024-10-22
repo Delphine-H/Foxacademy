@@ -16,7 +16,7 @@ const Welcome = () => {
         {/* Bannière principale */}
         <section className="banner">
           <div className="banner-content">
-            <img src={logo} alt="Fox Logo" className="logo" />
+            <img src={logo} alt="Fox Logo" className="logo-home" />
             <h1>Bienvenue à <span className="title-fox">Fox</span><span className="title-academy">Academy</span></h1>
     <p>Où l’apprentissage devient un jeu d’enfant ! Explorez, apprenez et jouez avec nous.</p>
     <Link className="btn-cta" to="/login">Commencez à apprendre</Link>

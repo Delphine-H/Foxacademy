@@ -1,5 +1,7 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import '../styles/menu.css';
+import logoFox from '../assets/Logo_Fox.png';
 
 const Menu = () => {
   return (
@@ -7,8 +9,10 @@ const Menu = () => {
       {/* Header */}
       <header className="header">
         <div className="logo-container">
-          {/* Assure-toi d'importer l'image du logo correctement si nécessaire */}
-          <img src="Foxacademy-logo.png" alt="Foxacademy Logo" className="logo" />
+          <img src={logoFox} alt="Logo Fox" className="logo" />
+
+        </div>
+        <div className="header-title">
         </div>
         <nav className="top-nav">
           <a href="#quizz">Quizz</a>
