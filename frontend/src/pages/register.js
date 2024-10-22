@@ -1,23 +1,28 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom'; // Ajout de useNavigate
 import '../styles/register.css';
 import logo from '../assets/Logo_Fox.png';
+import axios from 'axios';
 
 const Register = () => {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    password: '',
-    confirmPassword: '',
-    dob: '',
-    schoolYear: '',
-    schoolLevel: '',
-    school: '',
-    className: '',
+    name: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+    dob: "",
+    schoolYear: "",
+    schoolLevel: "",
+    school: "",
+    className: "",
   });
 
-  const [errorMessage, setErrorMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState("");
+  const [showPassword, setShowPassword] = useState(false); // Pour afficher/masquer le mot de passe
 
+  const navigate = useNavigate(); // Pour la redirection après succès
+
+  // Fonction pour mettre à jour les valeurs des champs
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -25,24 +30,30 @@ const Register = () => {
     });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+// Fonction pour gérer la soumission du formulaire
+const handleSubmit = async (e) => {
+  e.preventDefault();
 
+
+    // Vérifier si les mots de passe correspondent
     if (formData.password !== formData.confirmPassword) {
-      setErrorMessage('Les mots de passe ne correspondent pas.');
+      setErrorMessage("Les mots de passe ne correspondent pas");
       return;
     }
-
     setErrorMessage('');
-
     try {
-      const response = await fetch('/register', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
+      const response = await axios.post(
+        "http://localhost:5000/register",
+        {
+          Name: formData.name,
+          Email: formData.email,
+          Password: formData.password,
+          Firstname: formData.firstname,
+          Dob: formData.dob,
+          Level: formData.schoolLevel,
+          Role: formData.role,
+        }
+      );
 
       if (response.ok) {
         const data = await response.json();
@@ -68,14 +79,16 @@ const Register = () => {
   };
 
   return (
+
     <div>
       {/* Header */}
       <header className="header-container">
         <div className="header-title">
-          <Link to='/'>
-          <h1 className="title-fox">Fox
-            <span style= {{color: 'var(--color-text)'}}> Academy </span></h1>
-            </Link>
+        <Link to="/">
+          <div>
+        <img src={logo} alt="Logo Fox" className="logo" />
+        </div>
+          </Link>
           </div>
         <div className="header-buttons">
           <button className="btn-cta" onClick={() => window.location.href = '/login'}>
@@ -84,17 +97,20 @@ const Register = () => {
         </div>
       </header>
 
-      {/* Logo principal */}
-      <div className="logo-container">
-        <img src={logo} alt="Fox Logo" className="logo" />
-      </div>
-
       {/* Formulaire d'inscription */}
       <div className="register-form">
-        <h2>Inscription</h2>
+        <h1>Inscription</h1>
         <form onSubmit={handleSubmit}>
-          <div>
-            <label htmlFor="name">Nom:</label>
+        <p>
+            Vous avez déjà un compte ?{" "}
+            <Link to="/login" className="link">
+              Connectez-vous ici
+            </Link>
+            .
+          </p>
+
+          <div className="form-group">
+            <label htmlFor="name">Nom</label>
             <input
               type="text"
               id="name"
@@ -102,10 +118,12 @@ const Register = () => {
               value={formData.name}
               onChange={handleChange}
               required
+              placeholder="Name"
+              autoComplete="username"
             />
           </div>
-          <div>
-            <label htmlFor="email">Email:</label>
+          <div className="form-group">
+            <label htmlFor="email">Email</label>
             <input
               type="email"
               id="email"
@@ -113,29 +131,56 @@ const Register = () => {
               value={formData.email}
               onChange={handleChange}
               required
+              placeholder="E-mail"
+              autoComplete="email"
             />
           </div>
-          <div>
-            <label htmlFor="password">Mot de passe:</label>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              value={formData.password}
-              onChange={handleChange}
-              required
-            />
+          {/* Champ pour le mot de passe avec icône d'affichage */}
+          <div className="form-group">
+            <label htmlFor="password">Mot de passe</label>
+            <div className="password-container">
+              <input
+                type={showPassword ? "text" : "password"}
+                id="password"
+                name="password"
+                value={formData.password}
+                onChange={handleChange}
+                required
+                placeholder="Password"
+                autoComplete="new-password"
+              />
+              <i
+                onClick={() => setShowPassword(!showPassword)} // Toggle pour afficher/masquer
+                className={
+                  showPassword
+                    ? "fa-solid fa-eye eye-iconOpen"
+                    : "fa-solid fa-eye-slash eye-iconClose"
+                }
+              ></i>
+            </div>
           </div>
-          <div>
-            <label htmlFor="confirmPassword">Confirmer le mot de passe:</label>
+          {/* Champ pour confirmer le mot de passe avec icône d'affichage */}
+          <div className="form-group ">
+            <label htmlFor="confirmPassword">Confirmez le mot de passe</label>
             <input
-              type="password"
+              type={showPassword ? "text" : "password"}
               id="confirmPassword"
               name="confirmPassword"
               value={formData.confirmPassword}
               onChange={handleChange}
               required
+              placeholder="Repeat your Password"
+              autoComplete="new-password"
             />
+            <i
+              onClick={() => setShowPassword(!showPassword)} // Toggle pour afficher/masquer
+              style={{
+                cursor: "pointer",
+                position: "absolute",
+                right: "20px",
+                top: "220px",
+              }} // Style pour bien positionner l'icône
+            ></i>
           </div>
 
           {/* Date de naissance */}
@@ -237,7 +282,7 @@ const Register = () => {
             </div>
           </div>
 
-          {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
+          {errorMessage && <p className="errorMessage">{errorMessage}</p>}
           <button type="submit" className="btn-cta">S'inscrire</button>
         </form>
       </div>
