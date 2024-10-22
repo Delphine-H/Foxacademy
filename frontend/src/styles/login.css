@@ -51,7 +51,7 @@
   flex-direction: column;
   width: 300px;
   margin: 0 auto;
-  background-color: var(--color-primary); /* Formulaire sur fond blanc */
+  background-color: var(--color-white); /* Formulaire sur fond blanc */
   padding: 30px;
   border-radius: 40px;
   box-shadow: 0 4px 20px var(--color-primary);

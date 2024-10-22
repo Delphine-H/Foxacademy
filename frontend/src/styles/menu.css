@@ -50,7 +50,7 @@ body {
 
 .menu-button {
   padding: 10px 20px;
-  background-color: var(--color-secondary-fox);
+  background-color: var(--color-text);
   color: var(--color-white);
   font-size: 16px;
   border: none;
@@ -63,11 +63,17 @@ body {
   background-color: var(--color-secondary-fox);
 }
 
+body {
+  background-image: url('../assets/Paw_print_Fox.png'); /* Chemin vers votre image */
+  background-repeat: repeat; /* Répéter l'image */
+  background-size: auto; /* Taille de l'image */
+  background-color: var(--color-background); /* Couleur de fond de secours */
+}
+
 /* Contenu principal */
 .main-content {
   flex-grow: 1;
   padding: 40px;
-  background-color: var(--color-background);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -116,11 +122,3 @@ body {
 }
 
 /* Footer */
-.footer {
-  background-color: var(--color-primary);
-  color: var(--color-white);
-  text-align: center;
-  padding: 15px 0;
-  font-size: 18px;
-  font-weight: bold;
-}
