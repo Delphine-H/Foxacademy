@@ -21,8 +21,14 @@
   --font-family-body: 'Arial', 'Calibri', sans-serif;
 }
 
-  /* buttons */
+  /* Reset général */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
+  /* buttons */
   .btn-cta {
     background-color: var(--color-text);
     color: var(--color-white);
@@ -37,31 +43,7 @@
     background-color: var(--color-secondary-fox);
   }
 
-
-/* Reset général */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-/* Header */
-
-header {
-  display: flex;
-  justify-content: flex-end;
-  background-color: var(--color-primary); /* Même couleur de header que sur la page d'accueil */
-  padding: 50px 20px;
-}
-
-/* Conteneur pour les titres Fox et Academy */
-.header-title {
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-}
-
-/* Link */
+  /* Link */
 .link {
   color: var(--color-primary);
   text-decoration: none;
@@ -72,42 +54,24 @@ header {
   color: var(--color-secondary-fox);
 }
 
-
-.logo {
-  max-width: 150px; /* Taille similaire que la page d'accueil */
-}
-
 .logo-home {
   width: 150px;
 }
 
-/* Body */
-
+  /* Body */
 body {
   font-family: var(--font-family-body);
   background-color: var(--color-background);
   color: var(--color-text);
   text-align: center;
+  background-image: url('../assets/Paw_print_Fox.png'); /* Chemin vers votre image */
+  background-repeat: repeat; /* Répéter l'image */
+  background-size: auto; /* Taille de l'image */
  }
 
-
-/* Footer
-.footer-general {
-  background-color: var(--color-primary); /* Couleur similaire à la page d'accueil
-  padding: 10px 0;
-  margin-top: 180px;
-}
-
-.slogan {
-  color: var(--color-white);
-  font-size: 24px;
-  font-weight: bold;
-} */
-
-
-input {
-  padding: 10px;
-  margin: 10px;
-  border-radius: 5px;
-  border: 1px solid var(--color-border);
+  /* Message d'erreur */
+.error-message {
+  color: var(--color-error);
+  margin-bottom: 20px;
+  font-size: 14px
 }

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom'; // Ajout de useNavigate
-import '../styles/register.css';
-import logo from '../assets/Logo_Fox.png';
+import Header from '../components/header';
+import '../styles/form.css';
 import axios from 'axios';
 
 const Register = () => {
@@ -82,20 +82,7 @@ const handleSubmit = async (e) => {
 
     <div>
       {/* Header */}
-      <header className="header-container">
-        <div className="header-title">
-        <Link to="/">
-          <div>
-        <img src={logo} alt="Logo Fox" className="logo" />
-        </div>
-          </Link>
-          </div>
-        <div className="header-buttons">
-          <button className="btn-cta" onClick={() => window.location.href = '/login'}>
-            Connexion
-          </button>
-        </div>
-      </header>
+      <Header />
 
       {/* Formulaire d'inscription */}
       <div className="register-form">

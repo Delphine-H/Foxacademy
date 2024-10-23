@@ -6,9 +6,9 @@ import Login from './pages/login.js';
 import Register from './pages/register.js';
 import Menu from './pages/menu.js';
 import './styles/welcome.css';
-import './styles/login.css';
 import './styles/general.css';
 import './styles/menu.css';
+import './styles/header.css';
 
 function App() {
   return (

@@ -1,0 +1,62 @@
+/* Formulaire login */
+.form-container {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  margin: 0 auto;
+  background-color: var(--color-white); /* Formulaire sur fond blanc */
+  padding: 30px;
+  border-radius: 40px;
+  box-shadow: 0 4px 20px var(--color-primary);
+}
+
+.form-container label {
+  margin-top: 15px;
+  font-size: 18px;
+  text-align: left;
+  color: var(--color-text); /* Couleur de texte similaire à la page d'accueil */
+}
+
+.form-container input {
+  padding: 10px;
+  margin-top: 5px;
+  border: none;
+  background-color: var(--color-inputs); /* inputs (plus doux) */
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+/* Formulaire d'inscription */
+.register-form {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  width: 700px;/* Augmenter la largeur du formulaire */
+  margin: 0 auto;
+  background-color: var(--color-white);
+  padding: 35px;
+  border-radius: 40px;
+  box-shadow: 0 4px 20px var(--color-primary);
+
+}
+
+/* Style pour les sections du formulaire */
+.form-section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.form-section div {
+  width: 48%; /* Chaque champ occupe 48% pour être côte à côte */
+  margin-bottom: 10px;
+}
+
+input {
+  padding: 10px;
+  margin: 10px;
+  border-radius: 5px;
+  border: 1px solid var(--color-border);
+}
