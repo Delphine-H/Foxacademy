@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom'; // Ajout de useNavigate
-import '../styles/login.css';
-import logo from '../assets/Logo_Fox.png';
+import { Link, useNavigate } from 'react-router-dom';
+import Header from '../components/header';
+import '../styles/form.css';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -44,23 +44,10 @@ const Login = () => {
   return (
     <div>
       {/* Header */}
-      <header className='header-container' style={{ marginBottom: '130px' }}>
-        <div className="header-title">
-          <Link to="/">
-          <div>
-        <img src={logo} alt="Logo Fox" className="logo" />
-        </div>
-        
-          </Link>
-        </div>
-
-        <div className="header-buttons">
-          <Link className={"btn-cta"} to="/register"> Inscription </Link>
-        </div>
-      </header>
+  <Header />
 
       {/* Formulaire de connexion */}
-      <div className="login-form">
+      <div className="form-container">
         <h2>Connexion</h2>
         <p>
             Vous n'êtes pas encore inscrits ?{" "}

@@ -6,13 +6,6 @@ import logo from '../assets/Logo_Fox.png';
 const Welcome = () => {
   return (
       <>
-        {/* Header */}
-        <header>
-          <div className="header-buttons">
-            <Link className='btn-cta' to="/login"> Connexion </Link>
-          </div>
-        </header>
-
         {/* Bannière principale */}
         <section className="banner">
           <div className="banner-content">
