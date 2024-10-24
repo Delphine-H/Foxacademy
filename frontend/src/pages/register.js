@@ -1,25 +1,24 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom'; // Ajout de useNavigate
+import { Link, useNavigate } from 'react-router-dom';
 import Header from '../components/header';
 import '../styles/form.css';
 import axios from 'axios';
 
 const Register = () => {
   const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
-    dob: "",
-    schoolYear: "",
-    schoolLevel: "",
-    school: "",
-    className: "",
-  });
+      name: "",
+      email: "",
+      password: "",
+      firstname: "",
+      confirmPassword: "",
+      dob: "",
+      level: "",
+      role: "",
+    });
+
 
   const [errorMessage, setErrorMessage] = useState("");
   const [showPassword, setShowPassword] = useState(false); // Pour afficher/masquer le mot de passe
-
   const navigate = useNavigate(); // Pour la redirection après succès
 
   // Fonction pour mettre à jour les valeurs des champs
@@ -30,10 +29,9 @@ const Register = () => {
     });
   };
 
-// Fonction pour gérer la soumission du formulaire
-const handleSubmit = async (e) => {
-  e.preventDefault();
-
+  // Fonction pour gérer la soumission du formulaire
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
     // Vérifier si les mots de passe correspondent
     if (formData.password !== formData.confirmPassword) {
@@ -41,33 +39,46 @@ const handleSubmit = async (e) => {
       return;
     }
     setErrorMessage('');
-    try {
-      const response = await axios.post(
-        "http://localhost:5000/register",
-        {
-          Name: formData.name,
-          Email: formData.email,
-          Password: formData.password,
-          Firstname: formData.firstname,
-          Dob: formData.dob,
-          Level: formData.schoolLevel,
-          Role: formData.role,
-        }
-      );
 
-      if (response.ok) {
-        const data = await response.json();
-        console.log('Inscription réussie!', data);
-        // Redirection ou message de succès ici
+       // Vérifier si tous les champs sont remplis
+    const emptyFields = Object.entries(formData).filter(([key, value]) => !value);
+    if (emptyFields.length) {
+        setErrorMessage("Tous les champs sont obligatoires.");
+        return;
+    }
+
+    try {
+      console.log(formData); // Vérifie que tous les champs sont bien remplis
+      const response = await axios.post("http://localhost:5000/register", {
+        Name: formData.name,
+        Firstname: formData.firstname,
+        Email: formData.email,
+        Dob: formData.dob,
+        Password: formData.password,
+        Level: formData.level,
+        Role: formData.role,
+      });
+
+
+      if (response.status === 201) { // Le code 201 indique une création réussie
+        console.log('Inscription réussie!', response.data);
+        navigate("/menu"); // Redirection après succès
       } else {
         setErrorMessage('Erreur lors de l’inscription. Veuillez réessayer.');
       }
-    } catch (error) {
-      console.error('Erreur lors de l’inscription:', error);
+    }catch (error) {
+      if (error.response) {
+        console.error('Erreur lors de l’inscription:', error.response.data); // La réponse du serveur
+      } else if (error.request) {
+        console.error('Erreur lors de l’inscription: La requête n’a pas reçu de réponse.', error.request); // La requête a été envoyée mais aucune réponse reçue
+      } else {
+        console.error('Erreur lors de l’inscription:', error.message); // Une autre erreur est survenue
+      }
       setErrorMessage('Une erreur est survenue, veuillez réessayer plus tard.');
     }
   };
 
+  // Fonction pour ajouter une nouvelle classe
   const addClass = () => {
     const newClass = prompt("Entrez le nom de la nouvelle classe:");
     if (newClass) {
@@ -109,6 +120,21 @@ const handleSubmit = async (e) => {
               autoComplete="username"
             />
           </div>
+
+          <div className="form-group">
+            <label htmlFor="firstname">Prénom</label>
+            <input
+              type="text"
+              id="firstname"
+              name="firstname"
+              value={formData.firstname}
+              onChange={handleChange}
+              required
+              placeholder="Firstname"
+              autoComplete="Firstname"
+            />
+          </div>
+
           <div className="form-group">
             <label htmlFor="email">Email</label>
             <input
@@ -190,85 +216,30 @@ const handleSubmit = async (e) => {
               name="role"
               value={formData.role}
               onChange={handleChange}
-              required
-              ><option value="">Sélectionner votre rôle</option>
-              <option value="eleve">Eleve</option>
-              <option value="professeur">Professeur</option>
+              required>
+                <option value="">Sélectionner votre rôle</option>
+              <option value="Elève">Elève</option>
+              <option value="Professeur">Professeur</option>
               </select>
-          </div>
-
-          {/* Année scolaire */}
-          <div>
-            <label htmlFor="schoolYear">Année scolaire:</label>
-            <input
-              type="text"
-              id="schoolYear"
-              name="schoolYear"
-              value={formData.schoolYear}
-              onChange={handleChange}
-              placeholder="Ex: 2023-2024"
-              required
-            />
           </div>
 
           {/* Niveau scolaire */}
           <div>
-            <label htmlFor="schoolLevel">Niveau scolaire:</label>
+            <label htmlFor="level">Niveau scolaire:</label>
             <select
-              id="schoolLevel"
-              name="schoolLevel"
-              value={formData.schoolLevel}
+              id="level"
+              name="level"
+              value={formData.level}
               onChange={handleChange}
-              required
-            >
-              <option value="">Sélectionner un niveau</option>
-              <option value="primaire">CP</option>
-              <option value="college">CE1</option>
-              <option value="lycee">CE2</option>
-              <option value="universite">CM1</option>
-              <option value="universite">CM2</option>
+              required>
+                <option value="">Sélectionner votre Niveau</option>
+              <option value="CP">CP</option>
+              <option value="CE1">CE1</option>
+              <option value="CE2">CE2</option>
+              <option value="CM1">CM1</option>
+              <option value="CM2">CM2</option>
             </select>
           </div>
-
-          {/* École */}
-          <div>
-            <label htmlFor="school">École:</label>
-            <select
-              id="school"
-              name="school"
-              value={formData.school}
-              onChange={handleChange}
-              required
-            >
-              <option value="">Sélectionner une école</option>
-              <option value="ecole1">École Saint-Exupéry</option>
-              <option value="ecole2">École Jeanne-d'Arc</option>
-              <option value="ecole3">École Marie Curie</option>
-            </select>
-          </div>
-
-          {/* Classe */}
-          <div>
-            <label htmlFor="class">Classe:</label>
-            <select
-              id="class"
-              name="className"
-              value={formData.className}
-              onChange={handleChange}
-              required
-            >
-              <option value="">Sélectionner une classe</option>
-              <option value="classe1">Classe 1</option>
-              <option value="classe2">Classe 2</option>
-              <option value="classe3">Classe 3</option>
-            </select>
-            <div>
-              <button type="button" id="addClassBtn" onClick={addClass}>
-                Ajouter une nouvelle classe
-              </button>
-            </div>
-          </div>
-
           {errorMessage && <p className="errorMessage">{errorMessage}</p>}
           <button type="submit" className="btn-cta">S'inscrire</button>
         </form>
