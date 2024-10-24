@@ -76,9 +76,7 @@ const Login = () => {
             />
           </div>
           {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
-          <Link to="/menu">
           <button style={{ marginTop: '50px' }} type="submit" className="btn-cta">Se connecter</button>
-        </Link>
         </form>
       </div>
 
