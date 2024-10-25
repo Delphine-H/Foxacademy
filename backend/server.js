@@ -25,6 +25,7 @@ const questionRoutes = require('./routes/question');
 const resultRoutes = require('./routes/result');
 const dashboardRoutes = require('./routes/dashboard');
 const gameRoutes = require('./routes/game');
+const checkauthRoutes = require('./routes/checkauth');
 
 // Redirect to the route file
 app.use('/school', schoolRoutes);
@@ -35,6 +36,7 @@ app.use('/question', questionRoutes);
 app.use('/result', resultRoutes);
 app.use('/dashboard', dashboardRoutes);
 app.use('/game', gameRoutes);
+app.use('/checkauth', checkauthRoutes);
 
 // Define associations
 // School & Cohort
