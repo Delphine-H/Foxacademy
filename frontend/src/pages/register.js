@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import { AuthContext } from '../context/authContext';
 import { Link, useNavigate } from 'react-router-dom';
 import Header from '../components/header';
 import '../styles/form.css';

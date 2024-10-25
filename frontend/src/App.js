@@ -9,10 +9,12 @@ import './styles/welcome.css';
 import './styles/general.css';
 import './styles/menu.css';
 import './styles/header.css';
+import { AuthProvider } from './context/authContext.js';
 
 function App() {
   return (
     <Router>
+      <AuthProvider>
       <div className="App">
         <Routes>
           {/* Route pour la page d'accueil */}
@@ -29,6 +31,7 @@ function App() {
 
         </Routes>
       </div>
+      </AuthProvider>
     </Router>
   );
 }
