@@ -6,6 +6,7 @@ import '../styles/form.css';
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false); // Pour afficher/masquer le mot de passe
   const [errorMessage, setErrorMessage] = useState('');
 
   const navigate = useNavigate(); // Initialisation du hook useNavigate
@@ -69,11 +70,18 @@ const Login = () => {
           <div style={{ paddingTop: '30px' }}>
             <label>Password:</label>
             <input
-              type="password"
+              type={showPassword ? "text" : "password"}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              required
-            />
+              required/>
+                            <i
+                onClick={() => setShowPassword(!showPassword)} // Toggle pour afficher/masquer
+                className={
+                  showPassword
+                    ? "fa-solid fa-eye eye-iconOpen"
+                    : "fa-solid fa-eye-slash eye-iconClose"
+                }
+              ></i>
           </div>
           {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
           <button style={{ marginTop: '50px' }} type="submit" className="btn-cta">Se connecter</button>
