@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../context/authContext';
 import Header from '../components/header';
 import '../styles/form.css';
 
@@ -8,86 +9,74 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false); // Pour afficher/masquer le mot de passe
   const [errorMessage, setErrorMessage] = useState('');
+  const { login, user } = useContext(AuthContext);
+  const navigate = useNavigate();
 
-  const navigate = useNavigate(); // Initialisation du hook useNavigate
+  // Rediriger si l'utilisateur est déjà connecté
+  useEffect(() => {
+    if (user) {
+      navigate('/menu');
+    }
+  }, [user, navigate]);
 
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost:5000/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          Email: email,
-          Password: password,
-        }),
-      });
-      if (response.ok) {
-        const data = await response.json();
-        const { token, role } = data;
-        // Stocker le token et le rôle
-        localStorage.setItem('token', token);
-        localStorage.setItem('role', role);
-        // Rediriger vers la page /menu
-        navigate('/menu'); // Redirection après succès
-        setErrorMessage(''); // Réinitialiser les messages d'erreur
-      } else {
-        setErrorMessage('Invalid credentials');
-      }
+      await login(email, password);
     } catch (error) {
-      console.error('Error during login:', error);
-      setErrorMessage('Something went wrong, please try again later.');
+      setErrorMessage('Invalid credentials');
     }
   };
-
-  return (
+return (
     <div>
       {/* Header */}
-  <Header />
+      <Header />
 
       {/* Formulaire de connexion */}
-      <div className="form-container">
-        <h2>Connexion</h2>
+      <div className='form-connexion'>
+        <h1>Connexion</h1>
         <p>
-            Vous n'êtes pas encore inscrits ?{" "}
-            <Link to="/register" className="link">
-              Inscrivez-vous ici
-            </Link>
-            .
-          </p>
+          Vous n'êtes pas encore inscrits ? <br />
+          <Link to="/register" className="link">
+            Inscrivez-vous ici
+          </Link>
+          .
+        </p>
+
+        {/* Email */}
         <form onSubmit={handleLogin}>
-          <div style={{ paddingTop: '30px' }}>
+
+          <div className='label'>
             <label>Email:</label>
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
           </div>
-          <div style={{ paddingTop: '30px' }}>
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+
+          {/* Mot de passe */}
+          <div className='label'>
             <label>Password:</label>
+          </div>
+          <div className="password-container" >
             <input
               type={showPassword ? "text" : "password"}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              required/>
-                            <i
-                onClick={() => setShowPassword(!showPassword)} // Toggle pour afficher/masquer
-                className={
-                  showPassword
-                    ? "fa-solid fa-eye eye-iconOpen"
-                    : "fa-solid fa-eye-slash eye-iconClose"
-                }
-              ></i>
+              required />
+            <i
+              onClick={() => setShowPassword(!showPassword)} // Toggle pour afficher/masquer
+              className={
+                showPassword ? "fa-solid fa-eye eye-iconOpen" : "fa-solid fa-eye-slash eye-iconClose" }
+            ></i>
           </div>
+
           {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
-          <button style={{ marginTop: '50px' }} type="submit" className="btn-cta">Se connecter</button>
+          <button type="submit" className="submit">Se connecter</button>
         </form>
       </div>
-
       {/* Footer */}
       <footer className='footer-general'>
         <p className="slogan">LEARN & PLAY</p>
