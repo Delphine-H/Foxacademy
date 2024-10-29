@@ -171,7 +171,8 @@ async function seedDatabase() {
       Subject: 'Géographie',
       Type: 'QCM',
       Level: 'CE1',
-      AuthorID: user1.UserID
+      AuthorID: user1.UserID,
+      ValidityDate: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000) // 30 jours à partir de maintenant
     });
 
     const question2 = await findOrCreateQuestion({
@@ -179,7 +180,8 @@ async function seedDatabase() {
       Subject: 'Géographie',
       Type: 'QCM',
       Level: 'CE1',
-      AuthorID: user2.UserID
+      AuthorID: user2.UserID,
+      ValidityDate: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000) // 30 jours à partir de maintenant
     });
 
     const question3 = await findOrCreateQuestion({
@@ -187,7 +189,8 @@ async function seedDatabase() {
       Subject: 'Géographie',
       Type: 'QCM',
       Level: 'CE1',
-      AuthorID: user3.UserID
+      AuthorID: user3.UserID,
+      ValidityDate: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000) // 30 jours à partir de maintenant
     });
 
     // Création des réponses pour chaque question

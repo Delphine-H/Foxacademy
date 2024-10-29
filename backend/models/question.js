@@ -35,6 +35,10 @@ const Question = sequelize.define('Question', {
     type: DataTypes.DATE,
     defaultValue: DataTypes.NOW,
   },
+  ValidityDate: {
+    type: DataTypes.DATE,
+    allowNull: false,
+  },
 }, {
   timestamps: false,
   tableName: 'questions',
