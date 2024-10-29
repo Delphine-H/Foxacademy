@@ -3,18 +3,7 @@ body {
   line-height: 1.6;
 }
 
-/* Header */
-
-.header-buttons .btn-login,
-.header-buttons .btn-signup {
-  padding: 10px 20px;
-  margin-left: 10px;
-  border: none;
-  cursor: pointer;
-  border-radius: 5px;
-}
-
-/* Bannière principale */
+  /* Bannière principale */
 .banner {
   background-color: var(--color-primary);
   color: var(--color-white);
@@ -43,7 +32,7 @@ body {
 }
 
 
-/* À propos */
+  /* À propos */
 .about {
   padding: 50px 20px;
   background-color: var(--color-background);
@@ -60,7 +49,7 @@ body {
   font-size: 1.1em;
 }
 
-/* Fonctionnalités */
+  /* Fonctionnalités */
 .features {
   background-color: var(--color-white);
   padding: 50px 20px;
@@ -86,7 +75,7 @@ body {
   margin: 0 auto;
 }
 
-/* Témoignages */
+  /* Témoignages */
 .testimonials {
   background-color: var(--color-background);
   padding: 50px 20px;
@@ -105,7 +94,7 @@ blockquote {
   font-style: italic;
 }
 
-/* Bouton d'appel à l'action */
+  /* Bouton d'appel à l'action */
 .cta-section {
   background-color: var(--color-primary);
   color: var(--color-white);
@@ -122,28 +111,9 @@ blockquote {
   margin-bottom: 30px;
 }
 
-.btn-signup-large {
-  background-color: var(--color-secondary-fox);
-  color: var(--color-white);
-  padding: 15px 30px;
-  font-size: 1.5em;
-  border: none;
-  cursor: pointer;
-  border-radius: 5px;
-}
-
-.btn-signup-large:hover {
-  background-color: var(--color-secondary-fox);
-}
-
-/* Footer */
-footer {
-  background-color: var(--color-primary);
-  padding: 10px 0;
-}
-
+  /* footer */
 .slogan {
-  color: var(--color-white);
+  color: var(--color-primary);
   font-size: 24px;
   font-weight: bold;
 }

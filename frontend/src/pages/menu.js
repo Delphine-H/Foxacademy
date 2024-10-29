@@ -1,15 +1,20 @@
 import React from 'react';
-import './styles/menu.css';
-import 'Foxacademy-logo.png';
+import { Link } from 'react-router-dom';
+import '../styles/menu.css';
+import logoFox from '../assets/Logo_Fox.png';
+import Header from '../components/header';
 
 const Menu = () => {
   return (
     <div>
-      {/* Header */}
+      <Header />
+      {/* Header
       <header className="header">
         <div className="logo-container">
-          {/* Assure-toi d'importer l'image du logo correctement si nécessaire */}
-          <img src="Foxacademy-logo.png" alt="Foxacademy Logo" className="logo" />
+          <img src={logoFox} alt="Logo Fox" className="logo" />
+
+        </div>
+        <div className="header-title">
         </div>
         <nav className="top-nav">
           <a href="#quizz">Quizz</a>
@@ -17,7 +22,7 @@ const Menu = () => {
           <a href="#jeux">Jeux</a>
           <button className="menu-button">Menu</button>
         </nav>
-      </header>
+      </header>*/}
 
       {/* Section principale du menu */}
       <div className="main-content">

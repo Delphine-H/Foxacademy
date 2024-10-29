@@ -1,90 +1,82 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import '../styles/login.css';
-import logo from '../assets/Logo_Fox.png';
+import React, { useState, useContext, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../context/authContext';
+import Header from '../components/header';
+import '../styles/form.css';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false); // Pour afficher/masquer le mot de passe
   const [errorMessage, setErrorMessage] = useState('');
+  const { login, user } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  // Rediriger si l'utilisateur est déjà connecté
+  useEffect(() => {
+    if (user) {
+      navigate('/menu');
+    }
+  }, [user, navigate]);
 
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          email: email,
-          password: password,
-        }),
-      });
-      if (response.ok) {
-        const data = await response.json();
-        const { token, role } = data;
-        // Stocker le token et le rôle
-        localStorage.setItem('token', token);
-        localStorage.setItem('role', role);
-        // Rediriger ou afficher un message de succès
-        console.log('Login successful!', token, role);
-      } else {
-        setErrorMessage('Invalid credentials');
-      }
+      await login(email, password);
     } catch (error) {
-      console.error('Error during login:', error);
-      setErrorMessage('Something went wrong, please try again later.');
+      setErrorMessage('Invalid credentials');
     }
   };
-
-  return (
+return (
     <div>
       {/* Header */}
-      <header className='header-container' style={{ marginBottom: '100px' }}>
-      <div className="header-title">
-        <Link to="/">
-          <h1 className="title-fox">Fox
-            <span style= {{color: 'var(--color-text)'}}> Academy </span></h1>
-            </Link>
-          </div>
-        <div className="header-buttons">
-            <Link className={"btn-cta"} to="/register"> Inscription </Link>
-          </div>
-      </header>
-
-      {/* Logo principal */}
-      <div className="logo-container">
-        <img src={logo} alt="Logo Fox" className="logo" />
-      </div>
+      <Header />
 
       {/* Formulaire de connexion */}
-      <div className="login-form">
-        <h2>Connexion</h2>
+      <div className='form-connexion'>
+        <h1>Connexion</h1>
+        <p>
+          Vous n'êtes pas encore inscrits ? <br />
+          <Link to="/register" className="link">
+            Inscrivez-vous ici
+          </Link>
+          .
+        </p>
+
+        {/* Email */}
         <form onSubmit={handleLogin}>
-          <div style={{ paddingTop: '30px' }}>
+
+          <div className='label'>
             <label>Email:</label>
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
           </div>
-          <div style={{ paddingTop: '30px' }}>
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+
+          {/* Mot de passe */}
+          <div className='label'>
             <label>Password:</label>
+          </div>
+          <div className="password-container" >
             <input
-              type="password"
+              type={showPassword ? "text" : "password"}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              required
-            />
+              required />
+            <i
+              onClick={() => setShowPassword(!showPassword)} // Toggle pour afficher/masquer
+              className={
+                showPassword ? "fa-solid fa-eye eye-iconOpen" : "fa-solid fa-eye-slash eye-iconClose" }
+            ></i>
           </div>
+
           {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
-          <button style={{ marginTop: '50px' }} type="submit" className="btn-cta">Se connecter</button>
+          <button type="submit" className="submit">Se connecter</button>
         </form>
       </div>
-
       {/* Footer */}
       <footer className='footer-general'>
         <p className="slogan">LEARN & PLAY</p>
