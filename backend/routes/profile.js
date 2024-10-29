@@ -1,5 +1,4 @@
 const express = require('express');
-
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 const User = require('../models/user');
@@ -44,6 +43,20 @@ router.put('/', authenticateJWT, async (req, res) => {
   } catch (err) {
     console.error('Error updating profile:', err);
     res.status(500).json({ error: 'Failed to update profile' });
+  }
+});
+
+// GET: Retrieve user score
+router.get('/score', authenticateJWT, async (req, res) => {
+  try {
+    const user = await User.findByPk(req.user.UserID);
+    if (user) {
+      res.json({ score: user.TotalScore });
+    } else {
+      res.status(404).json({ message: 'User not found' });
+    }
+  } catch (err) {
+    res.status(500).json({ error: 'Failed to fetch user score' });
   }
 });
 
