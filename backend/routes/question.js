@@ -3,18 +3,22 @@ const { Op } = require('sequelize');
 const Question = require('../models/question');
 const Answer = require('../models/answer');
 const Result = require('../models/result');
+const User = require('../models/user');
+const authenticateJWT = require('../middleware/authenticateJWT');
 
 const router = express.Router();
 
 // POST: Create a new question with answers
-router.post('/', async (req, res) => {
+router.post('/', authenticateJWT, async (req, res) => {
   const {
-    Text, Subject, Type, Level, AuthorID, Answers,
+    Text, Subject, Type, Level, Answers, ValidityDate,
   } = req.body;
+  const { UserID, Role, CohortID } = req.user; // Extracted from the token
+
   try {
     // Validate input
-    if (!Text || !Subject || !Type || !Level || !AuthorID) {
-      return res.status(400).json({ error: 'All fields (text, subject, type, level, authorID) are required' });
+    if (!Text || !Subject || !Type || !Level || !ValidityDate) {
+      return res.status(400).json({ error: 'All fields (text, subject, type, level, validityDate) are required' });
     }
 
     // Validate answers
@@ -24,7 +28,7 @@ router.post('/', async (req, res) => {
 
     // Create the question
     const newQuestion = await Question.create({
-      Text, Subject, Type, Level, AuthorID,
+      Text, Subject, Type, Level, AuthorID: UserID, ValidityDate,
     });
 
     // Create the answers
@@ -46,12 +50,12 @@ router.post('/', async (req, res) => {
 router.put('/:id', async (req, res) => {
   const { id } = req.params;
   const {
-    Text, Subject, Type, Level, ValidatorID, Answers,
+    Text, Subject, Type, Level, ValidatorID, Answers, ValidityDate,
   } = req.body;
   try {
     // Validate input
-    if (!Text || !Subject || !Type || !Level) {
-      return res.status(400).json({ error: 'All fields (text, subject, type, level) are required' });
+    if (!Text || !Subject || !Type || !Level || !ValidityDate) {
+      return res.status(400).json({ error: 'All fields (text, subject, type, level, validityDate) are required' });
     }
 
     // Validate answers
@@ -61,7 +65,7 @@ router.put('/:id', async (req, res) => {
 
     // Update the question
     const updatedQuestion = await Question.update({
-      Text, Subject, Type, Level, ValidatorID: ValidatorID || null,
+      Text, Subject, Type, Level, ValidatorID: ValidatorID || null, ValidityDate,
     }, {
       where: { QuestionID: id },
       returning: true,
@@ -89,15 +93,32 @@ router.put('/:id', async (req, res) => {
 });
 
 // GET: Retrieve a random question based on user level, subject, and date of validity
-router.get('/', async (req, res) => {
-  const { UserID, Subject, Level } = req.query; // Assuming these are passed as query params
+router.get('/', authenticateJWT, async (req, res) => {
+  const { Subject, Type } = req.query; // Assuming these are passed as query params
+  const UserID = req.user.UserID; // Extracted from the token
+
+  console.log('Requête reçue avec les paramètres:', { UserID, Subject, Type });
 
   try {
+    // Retrieve the user's level from the database
+    const user = await User.findOne({
+      where: { UserID },
+      attributes: ['Level'],
+    });
+
+    if (!user) {
+      console.log('Utilisateur non trouvé:', UserID);
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    const { Level } = user;
+    console.log('Niveau de l\'utilisateur:', Level);
+
     // Retrieve the recent questions the user has answered successfully
     const recentResults = await Result.findAll({
       where: {
         UserID,
-        Score: { [Op.gt]: 1 }, // Score greater than 1
+        Score: { [Op.gt]: 1 }, // Score greater than 1 (will be passed to 0 when database will be completed)
         LastEvaluated: {
           [Op.gt]: new Date(Date.now() - 30 * 60 * 1000), // Within the last 30 minutes
         },
@@ -106,12 +127,14 @@ router.get('/', async (req, res) => {
     });
 
     const recentQuestionIds = recentResults.map((result) => result.QuestionID);
+    console.log('ID des questions récentes:', recentQuestionIds);
 
     // Find the 50 closest valid questions in terms of validity date
     const questions = await Question.findAll({
       where: {
         Subject,
         Level,
+        Type,
         QuestionID: { [Op.notIn]: recentQuestionIds }, // Exclude recent questions
         [Op.or]: [
           { ValidatorID: { [Op.ne]: null } }, // Questions that have been validated
@@ -124,17 +147,19 @@ router.get('/', async (req, res) => {
           as: 'Answers',
         },
       ],
-      order: [['validityDate', 'ASC']], // Order by closest validity date
+      order: [['ValidityDate', 'ASC']], // Order by closest validity date
       limit: 50, // Limit to 50 closest questions
     });
 
     if (questions.length === 0) {
-      return res.status(404).json({ message: 'No questions available' });
+      return res.status(204).json({ message: 'No questions available' });
     }
 
     // Select a random question from the 50 closest
     const randomIndex = Math.floor(Math.random() * questions.length);
     const selectedQuestion = questions[randomIndex];
+
+    console.log('Question sélectionnée:', selectedQuestion);
 
     return res.status(200).json(selectedQuestion);
   } catch (err) {
@@ -143,8 +168,8 @@ router.get('/', async (req, res) => {
 });
 
 // GET: Retrieve all questions created by an author or all questions of a cohort for professors
-router.get('/author', async (req, res) => {
-  const { UserID, Role, CohortID } = req.query; // Assuming these are passed as query params
+router.get('/author', authenticateJWT, async (req, res) => {
+  const { Role, CohortID, UserID } = req.user; // Extracted from the token
 
   try {
     let questions;
