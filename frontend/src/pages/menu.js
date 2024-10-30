@@ -37,8 +37,10 @@ const Menu = () => {
             <p>Progression</p>
           </div>
           <div className="card">
-            <img src="quiz-icon.png" alt="Quizz" className="card-icon" />
-            <p>Quizz</p>
+            <Link to="/quizz">
+              <img src="quiz-icon.png" alt="Quizz" className="card-icon" />
+              <p>Quizz</p>
+            </Link>
           </div>
           <div className="card">
             <img src="game-icon.png" alt="Jeux" className="card-icon" />
