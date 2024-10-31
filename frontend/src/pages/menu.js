@@ -1,28 +1,19 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import '../styles/menu.css';
 import logoFox from '../assets/Logo_Fox.png';
 import Header from '../components/header';
 
 const Menu = () => {
+  const navigate = useNavigate();
+
+  const handleQuizNavigation = () => {
+    navigate('/quizz');
+  };
+
   return (
     <div>
       <Header />
-      {/* Header
-      <header className="header">
-        <div className="logo-container">
-          <img src={logoFox} alt="Logo Fox" className="logo" />
-
-        </div>
-        <div className="header-title">
-        </div>
-        <nav className="top-nav">
-          <a href="#quizz">Quizz</a>
-          <a href="#progression">Progression</a>
-          <a href="#jeux">Jeux</a>
-          <button className="menu-button">Menu</button>
-        </nav>
-      </header>*/}
 
       {/* Section principale du menu */}
       <div className="main-content">
@@ -36,11 +27,9 @@ const Menu = () => {
             <img src="progress-icon.png" alt="Progression" className="card-icon" />
             <p>Progression</p>
           </div>
-          <div className="card">
-            <Link to="/quizz">
-              <img src="quiz-icon.png" alt="Quizz" className="card-icon" />
-              <p>Quizz</p>
-            </Link>
+          <div className="card" onClick={handleQuizNavigation}>
+            <img src="quiz-icon.png" alt="Quizz" className="card-icon" />
+            <p>Quizz</p>
           </div>
           <div className="card">
             <img src="game-icon.png" alt="Jeux" className="card-icon" />
