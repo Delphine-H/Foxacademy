@@ -1,11 +1,32 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { AuthContext } from '../context/authContext';
 import Header from '../components/header';
-import '../styles/profile.css';
-import '..styles/form.css';
+import '../styles/form.css';
+import '../styles/general.css';
+import '../styles/header.css';
+import '../styles/profil.css';
 
-function Profile() {
+function Profil() {
   const { user } = useContext(AuthContext);
+
+  // États locaux pour les valeurs des champs d'entrée
+  const [firstname, setFirstname] = useState(user?.firstname || '');
+  const [name, setName] = useState(user?.name || '');
+  const [email, setEmail] = useState(user?.email || '');
+  const [dob, setDob] = useState(user?.dob || '');
+  const [role, setRole] = useState(user?.role || '');
+  const [level, setLevel] = useState(user?.level || '');
+  const [avatar, setAvatar] = useState(user?.avatar || ''); // État pour l'avatar
+
+  const handleAvatarChange = (e) => {
+    setAvatar(e.target.files[0]); // Récupérer le fichier
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Logique pour envoyer les données du profil, y compris l'avatar
+    // Exemple : envoyer les données à votre API
+  };
 
   if (!user) {
     return <p>Chargement du profil...</p>;
@@ -17,23 +38,67 @@ function Profile() {
       <Header />
 
       {/* Contenu principal du profil */}
-      <div className="profile-container">
-        <h1>Profil de {user.firstname} {user.name}</h1>
-
-        {/* Informations utilisateur */}
-        <section className="profile-info">
-          <h2>Informations Personnelles</h2>
-          <p><strong>Nom complet:</strong> {user.firstname} {user.name}</p>
-          <p><strong>Email:</strong> {user.email}</p>
-          <p><strong>Date de naissance:</strong> {user.dob}</p>
-          <p><strong>Rôle:</strong> {user.role}</p>
-          <p><strong>Niveau scolaire:</strong> {user.level}</p>
-        </section>
-
+      <div className="form-container">
         {/* Section Paramètres */}
         <section className="settings">
-          <h2>Paramètres</h2>
-          <button className="btn">Modifier le profil</button>
+          <h1>Profil</h1>
+          <label>
+            Photo de profil:
+            <input
+              type="file"
+              accept="image/*"
+              onChange={handleAvatarChange}
+            />
+          </label>
+          <label>
+            Prénom:
+            <input
+              type="text"
+              value={firstname}
+              onChange={(e) => setFirstname(e.target.value)}
+            />
+          </label>
+          <label>
+            Nom:
+            <input
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
+          </label>
+          <label>
+            Email:
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </label>
+          <label>
+            Date de naissance:
+            <input
+              type="date"
+              value={dob}
+              onChange={(e) => setDob(e.target.value)}
+            />
+          </label>
+          <label>
+            Rôle:
+            <input
+              type="text"
+              value={role}
+              onChange={(e) => setRole(e.target.value)}
+            />
+          </label>
+          <label>
+            Niveau scolaire:
+            <input
+              type="text"
+              value={level}
+              onChange={(e) => setLevel(e.target.value)}
+            />
+          </label>
+          <button className="btn" onClick={handleSubmit}>Modifier le profil</button>
           <button className="btn">Changer le mot de passe</button>
           <button className="btn">Se déconnecter</button>
         </section>
@@ -47,4 +112,4 @@ function Profile() {
   );
 }
 
-export default Profile;
+export default Profil;

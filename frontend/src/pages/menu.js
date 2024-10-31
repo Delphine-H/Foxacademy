@@ -3,12 +3,17 @@ import { useNavigate } from 'react-router-dom';
 import '../styles/menu.css';
 import logoFox from '../assets/Logo_Fox.png';
 import Header from '../components/header';
+import '../styles/footer.css';
 
 const Menu = () => {
   const navigate = useNavigate();
 
   const handleQuizNavigation = () => {
     navigate('/quizz');
+  };
+
+  const handleProfilNavigation = () => {
+    navigate('/profil');
   };
 
   return (
@@ -19,7 +24,7 @@ const Menu = () => {
       <div className="main-content">
         <h1>Menu</h1>
         <div className="card-grid">
-          <div className="card">
+         <div className="card" onClick={handleProfilNavigation}>
             <img src="fox-profil.png" alt="Profil" className="card-icon" />
             <p>Profil</p>
           </div>

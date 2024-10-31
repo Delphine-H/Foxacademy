@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/authContext';
 import Header from '../components/header';
 import '../styles/form.css';
+import '../styles/footer.css';
 
 const Login = () => {
   const [email, setEmail] = useState('');

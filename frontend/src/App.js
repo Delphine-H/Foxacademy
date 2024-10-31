@@ -6,7 +6,8 @@ import Welcome from './pages/welcome.js';
 import Login from './pages/login.js';
 import Register from './pages/register.js';
 import Menu from './pages/menu.js';
-import QuizForm from './pages/quizz.js';
+import QuizForm from './pages/quiz.js';
+import Profil from './pages/profil.js';
 import './styles/welcome.css';
 import './styles/general.css';
 import './styles/menu.css';
@@ -39,6 +40,9 @@ function App() {
 
           {/* Route pour la page du quizz */}
           <Route path="/quizz" element={<PrivateRoute><QuizForm /></PrivateRoute>} />
+
+          {/* Route pour la page du menu' */}
+          <Route path="/profil" element={<PrivateRoute><Profil /></PrivateRoute>} />
 
         </Routes>
       </div>
