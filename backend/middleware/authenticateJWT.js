@@ -22,7 +22,10 @@ const authenticateJWT = (req, res, next) => {
         console.log('Decoded token:', decoded);
         next();  // Call the next middleware/route handler
     } catch (err) {
-        res.status(400).json({ message: 'Invalid Token' });
+        if (err.name === 'TokenExpiredError') {
+            return res.status(401).json({ message: 'Access Denied: Token Expired!' });
+        }
+        return res.status(400).json({ message: 'Invalid Token' });
     }
 };
 
