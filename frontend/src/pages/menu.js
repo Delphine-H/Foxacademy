@@ -16,6 +16,10 @@ const Menu = () => {
     navigate('/profil');
   };
 
+  const handleGameNavigation = () => {
+    navigate('/jeux');
+  };
+
   return (
     <div>
       <Header />
@@ -36,7 +40,7 @@ const Menu = () => {
             <img src="quiz-icon.png" alt="Quizz" className="card-icon" />
             <p>Quizz</p>
           </div>
-          <div className="card">
+          <div className="card" onClick={handleGameNavigation}>
             <img src="game-icon.png" alt="Jeux" className="card-icon" />
             <p>Jeux</p>
           </div>

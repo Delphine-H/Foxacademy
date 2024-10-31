@@ -8,6 +8,7 @@ import Register from './pages/register.js';
 import Menu from './pages/menu.js';
 import QuizForm from './pages/quiz.js';
 import Profil from './pages/profil.js';
+import Game from './pages/jeux.js';
 import './styles/welcome.css';
 import './styles/general.css';
 import './styles/menu.css';
@@ -41,8 +42,11 @@ function App() {
           {/* Route pour la page du quizz */}
           <Route path="/quizz" element={<PrivateRoute><QuizForm /></PrivateRoute>} />
 
-          {/* Route pour la page du menu' */}
+          {/* Route pour la page profil */}
           <Route path="/profil" element={<PrivateRoute><Profil /></PrivateRoute>} />
+
+          {/* Route pour la page de jeux */}
+          <Route path="/jeux" element={<PrivateRoute><Game /></PrivateRoute>} />
 
         </Routes>
       </div>
