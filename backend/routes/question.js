@@ -92,6 +92,7 @@ router.put('/:id', async (req, res) => {
   }
 });
 
+
 // GET: Retrieve a random question based on user level, subject, and date of validity
 router.get('/', authenticateJWT, async (req, res) => {
   const { Subject, Type } = req.query; // Assuming these are passed as query params
@@ -185,7 +186,7 @@ router.get('/author', authenticateJWT, async (req, res) => {
             as: 'Answers',
           },
         ],
-        order: [['createdAt', 'DESC']], // Order by creation date
+        order: [['CreatedAt', 'DESC']], // Order by creation date
       });
     } else {
       // Retrieve all questions created by the author
@@ -199,7 +200,7 @@ router.get('/author', authenticateJWT, async (req, res) => {
             as: 'Answers',
           },
         ],
-        order: [['createdAt', 'DESC']], // Order by creation date
+        order: [['CreatedAt', 'DESC']], // Order by creation date
       });
     }
 
@@ -210,6 +211,31 @@ router.get('/author', authenticateJWT, async (req, res) => {
     return res.status(200).json(questions);
   } catch (err) {
     return res.status(500).json({ error: 'Failed to retrieve questions', details: err.message });
+  }
+});
+
+// GET: Retrieve a question by its ID
+router.get('/:id', authenticateJWT, async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const question = await Question.findOne({
+      where: { QuestionID: id },
+      include: [
+        {
+          model: Answer,
+          as: 'Answers',
+        },
+      ],
+    });
+
+    if (!question) {
+      return res.status(404).json({ message: 'Question not found' });
+    }
+
+    return res.status(200).json(question);
+  } catch (err) {
+    return res.status(500).json({ error: 'Failed to retrieve question', details: err.message });
   }
 });
 
