@@ -9,6 +9,8 @@ import Menu from './pages/menu.js';
 import QuizForm from './pages/quiz.js';
 import Profil from './pages/profil.js';
 import Game from './pages/jeux.js';
+import Progression from './pages/progression.js';
+import QuestionForm from './pages/questions.js';
 import './styles/welcome.css';
 import './styles/general.css';
 import './styles/menu.css';
@@ -47,6 +49,15 @@ function App() {
 
           {/* Route pour la page de jeux */}
           <Route path="/jeux" element={<PrivateRoute><Game /></PrivateRoute>} />
+
+          {/* Route pour la page progression */}
+          <Route path="/progression" element={<PrivateRoute><Progression /></PrivateRoute>} />
+
+          {/* Route pour la page de création des questions */ }
+          <Route path="/create_question" element={<PrivateRoute><QuestionForm/></PrivateRoute>} />
+
+          {/* Route pour l'edition des questions */ }
+          <Route path="/edit_questions/:id" element={<PrivateRoute><QuestionForm/></PrivateRoute>} />
 
         </Routes>
       </div>
