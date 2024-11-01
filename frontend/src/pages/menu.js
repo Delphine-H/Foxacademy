@@ -20,6 +20,14 @@ const Menu = () => {
     navigate('/jeux');
   };
 
+  const handleProgressionNavigation = () => {
+    navigate('/progression');
+  };
+
+  const handleQuestionFormNavigation = () => {
+    navigate('/create_question');
+  };
+
   return (
     <div>
       <Header />
@@ -28,11 +36,11 @@ const Menu = () => {
       <div className="main-content">
         <h1>Menu</h1>
         <div className="card-grid">
-         <div className="card" onClick={handleProfilNavigation}>
+          <div className="card" onClick={handleProfilNavigation}>
             <img src="fox-profil.png" alt="Profil" className="card-icon" />
             <p>Profil</p>
           </div>
-          <div className="card">
+          <div className="card" onClick={handleProgressionNavigation}>
             <img src="progress-icon.png" alt="Progression" className="card-icon" />
             <p>Progression</p>
           </div>
@@ -45,6 +53,9 @@ const Menu = () => {
             <p>Jeux</p>
           </div>
         </div>
+        <button className="full-width-button" onClick={handleQuestionFormNavigation}>
+          Créer/Modifier des questions
+        </button>
       </div>
 
       {/* Footer */}
