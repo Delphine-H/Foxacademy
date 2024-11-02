@@ -1,9 +1,48 @@
 const express = require('express');
 const { Sequelize } = require('sequelize');
-const sequelize = require('../config/database');
+const Result = require('../models/result');
 const authenticateJWT = require('../middleware/authenticateJWT');
 
 const router = express.Router();
+
+const getUserResultsSummary = async (userId) => {
+  try {
+    const results = await Result.findAll({
+      where: { UserID: userId },
+      order: [['LastEvaluated', 'DESC']],
+    });
+
+    const latestResults = new Map();
+
+    // Iterate over results to keep only the latest for each questionID
+    results.forEach(result => {
+      // Check if we already have a record for this questionID
+      if (!latestResults.has(result.QuestionID) || 
+          new Date(result.LastEvaluated) > new Date(latestResults.get(result.QuestionID).LastEvaluated)) {
+        latestResults.set(result.QuestionID, result);
+      }
+    });
+
+    // Now we have the latest results by questionID, let's summarize them
+    const summary = Array.from(latestResults.values()).reduce((acc, result) => {
+      if (!acc[result.Subject]) {
+        acc[result.Subject] = {
+          totalScore: 0,
+          questionCount: 0,
+        };
+      }
+      acc[result.Subject].totalScore += result.Score;
+      acc[result.Subject].questionCount += 1;
+      return acc;
+    }, {});
+
+    return summary;
+  } catch (err) {
+    console.error('Error in getUserResultsSummary:', err); // Log the error
+    throw err; // Rethrow the error to handle it in the caller
+  }
+};
+
 
 // GET: Retrieve total scores and questions by subject for a student
 router.get('/student', authenticateJWT, async (req, res) => {
@@ -11,46 +50,17 @@ router.get('/student', authenticateJWT, async (req, res) => {
 
   try {
     console.log(`Executing query for UserID: ${UserID}`);
+    
+    // Call the function to get the results summary
+    const summary = await getUserResultsSummary(UserID);
 
-    const [results] = await sequelize.query(`
-      SELECT
-        r."Subject",
-        SUM(r."Score") AS totalScore,
-        COUNT(r."QuestionID") AS totalQuestions
-      FROM
-        results r
-      JOIN (
-        SELECT
-          "UserID",
-          "QuestionID",
-          MAX("LastEvaluated") AS "LastEvaluated"
-        FROM
-          results
-        WHERE
-          "UserID" = :userId
-        GROUP BY
-          "UserID", "QuestionID"
-      ) latestResults
-      ON r."UserID" = latestResults."UserID"
-      AND r."QuestionID" = latestResults."QuestionID"
-      AND r."LastEvaluated" = latestResults."LastEvaluated"
-      WHERE
-        r."UserID" = :userId
-      GROUP BY
-        r."Subject";
-    `, {
-      replacements: { userId: UserID },
-      type: Sequelize.QueryTypes.SELECT
-    });
-
-    console.log('Query executed successfully. Results:', results);
-
-    if (!results || results.length === 0) {
+    if (!summary || Object.keys(summary).length === 0) {
       console.log('No results found for this user');
       return res.status(404).json({ message: 'No results found for this user' });
     }
-
-    return res.status(200).json(results); // Send the results back as JSON
+    
+    console.log('Results summary found:', summary);
+    return res.status(200).json(summary); // Send the summary back as JSON
   } catch (error) {
     console.error('Error fetching student results:', error);
     return res.status(500).json({ error: 'Failed to retrieve student results' });
