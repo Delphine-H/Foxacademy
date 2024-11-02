@@ -16,12 +16,10 @@ const Header = () => {
   };
 
   return (
-    <header className="header-container">
+<header className="header-container">
       <div className="header-title">
         <Link to="/">
-          <div>
-            <img src={logo} alt="Logo Fox" className="logo" />
-          </div>
+          <h1>FoxAcademy</h1> {/* Remplacer le logo par le nom du site */}
         </Link>
       </div>
 
