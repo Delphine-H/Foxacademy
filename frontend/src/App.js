@@ -15,6 +15,7 @@ import './styles/welcome.css';
 import './styles/general.css';
 import './styles/menu.css';
 import './styles/header.css';
+import './styles/footer.css';
 import { AuthProvider, AuthContext } from './context/authContext.js';
 
 // Composant pour protéger les routes

@@ -6,11 +6,9 @@
   padding: 10px 20px;
   margin: 0 0 50px 0;
   background-color: var(--color-text); /* Fond blanc (optionnel) */
-  border-bottom-left-radius: 20px;
-  border-bottom-right-radius: 20px;
 }
 
-/* Conteneur pour les titres Fox et Academy */
+/* Conteneur pour les titres Fox Academy */
 .header-title {
   display: flex;
   align-items: center;

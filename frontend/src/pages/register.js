@@ -3,7 +3,10 @@ import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/authContext';
 import Header from '../components/header';
 import '../styles/form.css';
+import '../styles/register.css';
+import '../styles/footer.css';
 import axios from 'axios';
+import Footer from '../components/footer';
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -271,9 +274,7 @@ const Register = () => {
       </div>
 
       {/* Footer */}
-      <footer className='footer-general'>
-        <p className="slogan">LEARN & PLAY</p>
-      </footer>
+      <Footer />
     </div >
   );
 };

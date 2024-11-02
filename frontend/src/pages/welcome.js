@@ -84,7 +84,7 @@ const Welcome = () => {
 
       {/* Footer */}
       <footer>
-        <p className="slogan">LEARN & PLAY</p>
+      <p>© 2024 FoxAcademy - Learn & Play. All rights reserved.</p>
       </footer>
     </>
   );

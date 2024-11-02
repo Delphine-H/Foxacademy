@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/authContext';
 import Header from '../components/header';
+import Footer from '../components/footer';
 import '../styles/form.css';
 import '../styles/footer.css';
 
@@ -79,9 +80,7 @@ return (
         </form>
       </div>
       {/* Footer */}
-      <footer className='footer-general'>
-        <p className="slogan">LEARN & PLAY</p>
-      </footer>
+      <Footer />
     </div>
   );
 };

@@ -31,30 +31,33 @@ body {
 .top-nav {
   display: flex;
   align-items: center;
+  text-decoration: none;
+  color: var(--color-white);
+  font-size:18px;
+  border-radius: 15px;
 }
 
 .top-nav a {
   text-decoration: none;
-  color: var(--color-primary);
-  font-size: 18px;
+  color: var(--color-white);
+  font-size:18px;
   margin-right: 20px;
   padding: 8px 15px;
-  background-color: var(--color-white);
-  border-radius: 8px;
+  border-radius: 15px;
   transition: background-color 0.3s ease;
 }
 
 .top-nav a:hover {
-  background-color: var(--color-other);
+  background-color: var(--color-secondary-fox);
 }
 
 .menu-button {
   padding: 10px 20px;
   background-color: var(--color-text);
   color: var(--color-white);
-  font-size: 16px;
+  font-size: 18px;
   border: none;
-  border-radius: 8px;
+  border-radius: 15px;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
@@ -64,7 +67,7 @@ body {
 }
 
 body {
-  background-image: url('../assets/Paw_print_Fox.png'); /* Chemin vers votre image */
+  background-image: url('../assets/Fox-portrait_complet.png'); /* Chemin vers votre image */
   background-repeat: repeat; /* Répéter l'image */
   background-size: auto; /* Taille de l'image */
   background-color: var(--color-background); /* Couleur de fond de secours */
@@ -103,7 +106,7 @@ body {
   justify-content: center;
   border-radius: 10px;
   transition: background-color 0.3s ease;
-  box-shadow: 0 2px 10px var(--color-primary);
+  box-shadow: 0 2px 10px var(--color-other);
 }
 
 .card-icon {
@@ -122,10 +125,20 @@ body {
   background-color: var(--color-other);
 }
 
-/* Footer */
+.full-width-button {
+  background-color: var(--color-primary); /* Couleur de fond */
+  color: var(--color-white); /* Couleur du texte */
+  padding: 5px 5px; /* Espacement interne */
+  font-size: 10px; /* Taille de la police */
+  border: none; /* Supprimer la bordure */
+  border-radius: 15px; /* Coins arrondis */
+  cursor: pointer; /* Curseur de la souris */
+  width: 15%; /* Largeur complète */
+  text-align: center; /* Centrer le texte */
+  margin-top: 30px; /* Ajouter de l'espace au-dessus du bouton */
+}
 
-.slogan {
-  color: var(--color-primary);
-  font-size: 24px;
-  font-weight: bold;
+.full-width-button:hover {
+  background-color: var(--color-secondary-fox); /* Couleur de fond au survol */
+  transform: scale(1.05); /* Agrandir légèrement au survol */
 }

@@ -3,7 +3,10 @@ import { useNavigate } from 'react-router-dom';
 import '../styles/menu.css';
 import logoFox from '../assets/Logo_Fox.png';
 import Header from '../components/header';
+import Footer from '../components/footer';
 import '../styles/footer.css';
+import '../styles/general.css';
+import '../styles/header.css';
 
 const Menu = () => {
   const navigate = useNavigate();
@@ -54,14 +57,12 @@ const Menu = () => {
           </div>
         </div>
         <button className="full-width-button" onClick={handleQuestionFormNavigation}>
-          Créer/Modifier des questions
+          Créer des questions
         </button>
       </div>
 
       {/* Footer */}
-      <footer className="footer">
-        <div className="footer-text">LEARN & PLAY</div>
-      </footer>
+      <Footer />
     </div>
   );
 };

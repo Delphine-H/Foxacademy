@@ -76,19 +76,20 @@ h1 {
   background-color: var(--color-secondary-fox);
 }
 
-/* Pied de page */
+/* Footer */
 .footer-general {
   background-color: var(--color-text);
   padding: 20px;
   color: var(--color-white);
   text-align: center;
-  margin-top: 30px;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
+  position: absolute; /* Positionner le footer en bas de la page */
+  bottom: 0; /* Positionner le footer en bas */
+  width: 100%; /* S'assurer que le footer prend toute la largeur de la page */
+  border-radius: 0; /* Supprimer les coins arrondis */
 }
 
-.footer-general .slogan {
-  font-size: 1.2em;
+.footer-general {
+  font-size: 1em;
   font-weight: bold;
   color: var(--color-white);
 }

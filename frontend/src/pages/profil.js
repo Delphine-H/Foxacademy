@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { AuthContext } from '../context/authContext';
 import Header from '../components/header';
+import Footer from '../components/footer';
 import '../styles/form.css';
 import '../styles/general.css';
 import '../styles/header.css';
@@ -105,9 +106,7 @@ function Profil() {
       </div>
 
       {/* Footer */}
-      <footer className='footer-general'>
-        <p className="slogan">LEARN & PLAY</p>
-      </footer>
+      <Footer />
     </div>
   );
 }

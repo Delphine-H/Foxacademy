@@ -10,7 +10,7 @@
   border-radius: 0; /* Supprimer les coins arrondis */
 }
 
-.footer-general {
+.footer-general .slogan {
   font-size: 1em;
   font-weight: bold;
   color: var(--color-white);
