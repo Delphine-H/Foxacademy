@@ -129,19 +129,19 @@ body {
 /* Bouton pleine largeur */
 
 .full-width-button {
-  background-color: var(--color-primary); /* Couleur de fond */
-  color: var(--color-white); /* Couleur du texte */
+  background-color: var(--color-secondary-fox);
+  color: var(--color-white);
   padding: 5px 5px; /* Espacement interne */
-  font-size: 10px; /* Taille de la police */
-  border: none; /* Supprimer la bordure */
-  border-radius: 15px; /* Coins arrondis */
-  cursor: pointer; /* Curseur de la souris */
+  font-size: 10px;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
   width: 15%; /* Largeur complète */
   text-align: center; /* Centrer le texte */
   margin-top: 30px; /* Ajouter de l'espace au-dessus du bouton */
 }
 
 .full-width-button:hover {
-  background-color: var(--color-secondary-fox); /* Couleur de fond au survol */
+  background-color: var(--color-other); /* Couleur de fond au survol */
   transform: scale(1.05); /* Agrandir légèrement au survol */
 }
