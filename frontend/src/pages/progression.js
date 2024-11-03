@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import { Doughnut } from 'react-chartjs-2';
 import axios from 'axios';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
@@ -11,10 +11,12 @@ ChartJS.register(ArcElement, Tooltip, Legend, ChartDataLabels);
 const ProgressionChart = () => {
   const [chartData, setChartData] = useState({});
 
-  // Liste de toutes les matières possibles
-  const allSubjects = ['Mathématiques', 'Français', 'Histoire', 'Géographie', 'Sciences', 'Anglais'];
+  // Liste de toutes les matières possibles, mémorisée pour éviter les changements de dépendances
+  const allSubjects = useMemo(() => ['Mathématiques', 'Français', 'Histoire', 'Géographie', 'Sciences', 'Anglais'], []);
 
   useEffect(() => {
+    let isMounted = true; // Drapeau pour vérifier si le composant est monté
+
     const fetchData = async () => {
       try {
         const token = localStorage.getItem('token');
@@ -50,8 +52,6 @@ const ProgressionChart = () => {
         Object.keys(subjectsData).forEach((subject) => {
           const goodAnswers = subjectsData[subject].goodAnswers;
           const badAnswers = subjectsData[subject].badAnswers;
-          const totalAnswers = goodAnswers + badAnswers;
-          const percentage = totalAnswers > 0 ? ((goodAnswers / totalAnswers) * 100).toFixed(0) : null;
 
           charts[subject] = {
             labels: ['Bonnes Réponses', 'Mauvaises Réponses'],
@@ -84,14 +84,22 @@ const ProgressionChart = () => {
           };
         });
 
-        setChartData(charts);
+        if (isMounted) {
+          setChartData(charts);
+        }
       } catch (error) {
-        console.error('Error fetching data:', error);
+        if (isMounted) {
+          console.error('Error fetching data:', error);
+        }
       }
     };
 
     fetchData();
-  }, []);
+
+    return () => {
+      isMounted = false; // Mettre à jour le drapeau lorsque le composant est démonté
+    };
+  }, [allSubjects]); // Ajoutez allSubjects comme dépendance
 
   return (
     <div>
