@@ -1,6 +1,6 @@
-
 import React, { useContext } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { WindowSizeProvider } from './context/windowSizeContext.js';
 import './App.css';
 import Welcome from './pages/welcome.js';
 import Login from './pages/login.js';
@@ -15,6 +15,7 @@ import './styles/welcome.css';
 import './styles/general.css';
 import './styles/menu.css';
 import './styles/header.css';
+import './styles/footer.css';
 import { AuthProvider, AuthContext } from './context/authContext.js';
 
 // Composant pour protéger les routes
@@ -27,40 +28,41 @@ function App() {
   return (
     <Router>
       <AuthProvider>
-      <div className="App">
-        <Routes>
-          {/* Route pour la page d'accueil */}
-          <Route path="/" element={<Welcome />} />
+        <WindowSizeProvider>
+          <div className="App">
+            <Routes>
+              {/* Route pour la page d'accueil */}
+              <Route path="/" element={<Welcome />} />
 
-          {/* Route pour la page de connexion */}
-          <Route path="/Login" element={<Login />} />
+              {/* Route pour la page de connexion */}
+              <Route path="/login" element={<Login />} />
 
-          {/* Route pour la page d'enregistrement */}
-          <Route path="/register" element={<Register />} />
+              {/* Route pour la page d'enregistrement */}
+              <Route path="/register" element={<Register />} />
 
-          {/* Route pour la page du menu' */}
-          <Route path="/menu" element={<PrivateRoute><Menu /></PrivateRoute>} />
+              {/* Route pour la page du menu */}
+              <Route path="/menu" element={<PrivateRoute><Menu /></PrivateRoute>} />
 
-          {/* Route pour la page du quizz */}
-          <Route path="/quizz" element={<PrivateRoute><QuizForm /></PrivateRoute>} />
+              {/* Route pour la page du quizz */}
+              <Route path="/quizz" element={<PrivateRoute><QuizForm /></PrivateRoute>} />
 
-          {/* Route pour la page profil */}
-          <Route path="/profil" element={<PrivateRoute><Profil /></PrivateRoute>} />
+              {/* Route pour la page profil */}
+              <Route path="/profil" element={<PrivateRoute><Profil /></PrivateRoute>} />
 
-          {/* Route pour la page de jeux */}
-          <Route path="/jeux" element={<PrivateRoute><Game /></PrivateRoute>} />
+              {/* Route pour la page de jeux */}
+              <Route path="/jeux" element={<PrivateRoute><Game /></PrivateRoute>} />
 
-          {/* Route pour la page progression */}
-          <Route path="/progression" element={<PrivateRoute><Progression /></PrivateRoute>} />
+              {/* Route pour la page progression */}
+              <Route path="/progression" element={<PrivateRoute><Progression /></PrivateRoute>} />
 
-          {/* Route pour la page de création des questions */ }
-          <Route path="/create_question" element={<PrivateRoute><QuestionForm/></PrivateRoute>} />
+              {/* Route pour la page de création des questions */}
+              <Route path="/create_question" element={<PrivateRoute><QuestionForm /></PrivateRoute>} />
 
-          {/* Route pour l'edition des questions */ }
-          <Route path="/edit_questions/:id" element={<PrivateRoute><QuestionForm/></PrivateRoute>} />
-
-        </Routes>
-      </div>
+              {/* Route pour l'édition des questions */}
+              <Route path="/edit_questions/:id" element={<PrivateRoute><QuestionForm /></PrivateRoute>} />
+            </Routes>
+          </div>
+        </WindowSizeProvider>
       </AuthProvider>
     </Router>
   );

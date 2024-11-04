@@ -16,23 +16,21 @@ const Header = () => {
   };
 
   return (
-    <header className="header-container">
+<header className="header-container">
       <div className="header-title">
         <Link to="/">
-          <div>
-            <img src={logo} alt="Logo Fox" className="logo" />
-          </div>
+          <h1>FoxAcademy</h1> {/* Remplacer le logo par le nom du site */}
         </Link>
       </div>
 
       {/* Si l'utilisateur est connecter */}
       {user && (
         <nav className="top-nav">
-          <Link className="menu-buttons"> Quizz</Link>
-          <Link className="menu-buttons"> Progression </Link>
-          <Link className="menu-buttons"> Jeux </Link>
-          <button className="menu-button" onClick={() => navigate('/menu')}>Menu</button>
-        </nav>
+        <Link to="/quizz" className="menu-buttons">Quizz</Link>
+        <Link to="/progression" className="menu-buttons">Progression</Link>
+        <Link to="/jeux" className="menu-buttons">Jeux</Link>
+        <button className="menu-button" onClick={() => navigate('/menu')}>Menu</button>
+      </nav>
       )}
       <div className="header-buttons">
         <button className="btn-cta" onClick={handleLoginLogout}>

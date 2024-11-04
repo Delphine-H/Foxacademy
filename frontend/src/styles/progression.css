@@ -1,39 +1,23 @@
-/* Container de la grille */
+/* progression.css */
 .chart-grid {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
-  align-items: flex-start;
-  max-width: 100%; /* Utilise toute la largeur */
-  padding: 20px 10px;
+  justify-content: center;
   gap: 20px;
+  padding: 20px;
 }
 
-/* Conteneur des graphiques */
 .chart-container {
-  background-color: white;
-  padding: 20px; /* Légèrement augmenté pour un design plus aéré */
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  flex: 1 1 calc(33.33% - 40px); /* Trois graphiques par ligne avec une marge plus large */
-  max-width: calc(33.33% - 40px);
-  height:auto;
-  aspect-ratio: 1 / 1; /* Ratio carré pour un design harmonieux */
-  margin: 20px 0; /* Marge verticale plus grande */
+  background-color: var(--color-white);
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 4px 20px var(--color-other);
+  max-width: 300px;
+  text-align: center;
 }
 
-/* Sur écrans intermédiaires, garde trois graphiques */
-@media (max-width: 768px) {
-  .chart-container {
-    flex: 1 1 calc(33.33% - 40px); /* Toujours trois par ligne */
-    max-width: calc(33.33% - 40px);
-  }
-}
-
-/* Sur écrans très petits, un graphique par ligne */
-@media (max-width: 480px) {
-  .chart-container {
-    flex: 1 1 100%;
-    max-width: 100%;
-  }
+.chart-container h3 {
+  margin-bottom: 20px;
+  font-size: 1.5em;
+  color: var(--color-heading);
 }

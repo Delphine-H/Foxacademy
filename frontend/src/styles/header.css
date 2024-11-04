@@ -6,18 +6,22 @@
   padding: 10px 20px;
   margin: 0 0 50px 0;
   background-color: var(--color-text); /* Fond blanc (optionnel) */
-  border-bottom-left-radius: 20px;
-  border-bottom-right-radius: 20px;
 }
 
-/* Conteneur pour les titres Fox et Academy */
+/* Conteneur pour les titres Fox Academy */
 .header-title {
   display: flex;
   align-items: center;
   cursor: pointer;
 }
 
-.header-buttons{
+.header-title h1 {
+  font-size: 24px; /* Taille de la police pour le titre */
+  color: var(--color-white); /* Couleur du texte */
+  margin: 0; /* Supprimer les marges par défaut */
+}
+
+.header-buttons {
   padding: 10px 20px;
   display: flex;
   border: none;
@@ -26,6 +30,50 @@
   background-color: var(--color-text); /* Même couleur que sur la page d'accueil */
 }
 
-.logo {
-  max-width: 150px; /* Taille similaire que la page d'accueil */
+.top-nav {
+  display: flex;
+  align-items: center;
+}
+
+.menu-buttons {
+  text-decoration: none;
+  color: var(--color-white);
+  font-size: 18px;
+  margin-right: 20px;
+  padding: 8px 15px;
+  border-radius: 15px;
+  transition: background-color 0.3s ease;
+}
+
+.menu-buttons:hover {
+  background-color: var(--color-secondary);
+}
+
+.menu-button {
+  padding: 10px 20px;
+  background-color: var(--color-text);
+  color: var(--color-white);
+  font-size: 18px;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.menu-button:hover {
+  background-color: var(--color-secondary-fox);
+}
+
+.header-buttons .btn-cta {
+  background-color: var(--color-text);
+  color: var(--color-white);
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.header-buttons .btn-cta:hover {
+  background-color: var(--color-secondary-fox);
 }

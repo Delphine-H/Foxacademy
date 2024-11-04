@@ -4,6 +4,8 @@ import axios from 'axios';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 import '../styles/progression.css';
+import '../styles/general.css';
+import '../styles/form.css';
 import Header from '../components/header';
 
 ChartJS.register(ArcElement, Tooltip, Legend, ChartDataLabels);
@@ -11,7 +13,6 @@ ChartJS.register(ArcElement, Tooltip, Legend, ChartDataLabels);
 const ProgressionChart = () => {
   const [chartData, setChartData] = useState({});
 
-  // Liste de toutes les matières possibles
   const allSubjects = ['Mathématiques', 'Français', 'Histoire', 'Géographie', 'Sciences', 'Anglais'];
 
   useEffect(() => {
@@ -24,7 +25,6 @@ const ProgressionChart = () => {
 
         console.log('Data:', response.data);
 
-        // Initialiser les données pour chaque matière
         const subjectsData = {};
 
         allSubjects.forEach((subject) => {
@@ -34,7 +34,6 @@ const ProgressionChart = () => {
           };
         });
 
-        // Mettre à jour les données avec les valeurs récupérées
         Object.entries(response.data).forEach(([subject, result]) => {
           const score = parseInt(result.totalScore, 10);
           const totalQuestions = parseInt(result.questionCount, 10);
@@ -45,7 +44,6 @@ const ProgressionChart = () => {
           }
         });
 
-        // Créer les données pour chaque graphique
         const charts = {};
         Object.keys(subjectsData).forEach((subject) => {
           const goodAnswers = subjectsData[subject].goodAnswers;
@@ -60,15 +58,15 @@ const ProgressionChart = () => {
                 label: subject,
                 data: [goodAnswers, badAnswers],
                 backgroundColor: [
-                  'rgba(75, 192, 192, 0.6)', // Couleur pour les bonnes réponses
-                  'rgba(255, 99, 132, 0.6)',  // Couleur pour les mauvaises réponses
+                  'rgba(75, 192, 192, 0.6)',
+                  'rgba(255, 99, 132, 0.6)',
                 ],
                 borderWidth: 1,
               },
             ],
             plugins: {
               datalabels: {
-                display: (context) => context.dataIndex === 0, // Afficher uniquement pour les bonnes réponses
+                display: (context) => context.dataIndex === 0,
                 formatter: (value, context) => {
                   const total = context.dataset.data.reduce((acc, val) => acc + val, 0);
                   const percentage = total > 0 ? ((context.dataset.data[0] / total) * 100).toFixed(0) : null;
@@ -114,7 +112,7 @@ const ProgressionChart = () => {
                     text: `Progression en ${subject}`,
                   },
                   datalabels: {
-                    display: (context) => context.dataIndex === 0, // Afficher uniquement pour les bonnes réponses
+                    display: (context) => context.dataIndex === 0,
                     formatter: (value, context) => {
                       const total = context.dataset.data.reduce((acc, val) => acc + val, 0);
                       const percentage = total > 0 ? ((context.dataset.data[0] / total) * 100).toFixed(0) : null;

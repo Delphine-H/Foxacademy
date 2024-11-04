@@ -76,19 +76,45 @@ h1 {
   background-color: var(--color-secondary-fox);
 }
 
-/* Pied de page */
+/* section des boutons */
+
+.btn {
+  background-color: var(--color-primary); /* Couleur de fond */
+  color: var(--color-white); /* Couleur du texte */
+  padding: 10px 20px; /* Espacement interne */
+  font-size: 16px; /* Taille de la police */
+  border: none; /* Supprimer la bordure */
+  border-radius: 5px; /* Coins arrondis */
+  cursor: pointer; /* Curseur de la souris */
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Transition pour les effets */
+  margin: 10px 0; /* Espacement externe */
+}
+
+.btn:hover {
+  background-color: var(--color-secondary); /* Couleur de fond au survol */
+  transform: scale(1.05); /* Agrandir légèrement au survol */
+}
+
+.btn:active {
+  background-color: var(--color-secondary-dark); /* Couleur de fond lors du clic */
+  transform: scale(0.95); /* Réduire légèrement lors du clic */
+}
+
+/*Footer
 .footer-general {
   background-color: var(--color-text);
   padding: 20px;
   color: var(--color-white);
   text-align: center;
-  margin-top: 30px;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  border-radius: 0;
 }
 
-.footer-general .slogan {
-  font-size: 1.2em;
+.footer-general {
+  font-size: 1em;
   font-weight: bold;
   color: var(--color-white);
 }
+*/

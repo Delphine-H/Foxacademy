@@ -2,11 +2,11 @@
 
 :root {
   /* Colors */
-  --color-background: #F7F7F7;
-  --color-secondary-fox: #FE5617;
+  --color-background: #FFFFFF;
+  --color-secondary-fox: #e3680c;
   --color-primary: #00C2BA;
   --color-white: #FFFFFF;
-  --color-text: #333;
+  --color-text: #000;
   --color-heading: #333;
   --color-border: #e0e0e0;
   --color-shadow: rgba(0, 0, 0, 0.1);
@@ -36,7 +36,7 @@
     border: none;
     cursor: pointer;
     font-size: 1.2em;
-    border-radius: 5px;
+    border-radius: 15px;
   }
 
   .btn-cta:hover {
@@ -58,16 +58,16 @@
   width: 150px;
 }
 
-  /* Body */
 body {
   font-family: var(--font-family-body);
   background-color: var(--color-background);
   color: var(--color-text);
   text-align: center;
-  background-image: url('../assets/Paw_print_Fox.png'); /* Chemin vers votre image */
-  background-repeat: repeat; /* Répéter l'image */
+  background-image: url('../assets/Fox-portrait_complet.png'); /* Chemin vers votre image */
   background-size: auto; /* Taille de l'image */
- }
+  background-repeat: no-repeat; /* Empêcher la répétition de l'image */
+  background-position: left 70%; /* Ajuster la position de l'image */
+}
 
   /* Message d'erreur */
 .error-message {
