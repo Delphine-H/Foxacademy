@@ -53,14 +53,14 @@ h1 {
 /* Titre pour les paramètres */
 .settings h2 {
   font-size: 1.8em;
-  color: var(--color-heading);
+  color: var(--color-text);
   margin-bottom: 15px;
   text-align: center;
 }
 
 /* Boutons des paramètres */
 .settings .btn {
-  background-color: var(--color-primary);
+  background-color: var(--color-text);
   color: var(--color-white);
   padding: 10px 20px;
   margin: 10px 5px;
@@ -79,15 +79,15 @@ h1 {
 /* section des boutons */
 
 .btn {
-  background-color: var(--color-primary); /* Couleur de fond */
-  color: var(--color-white); /* Couleur du texte */
-  padding: 10px 20px; /* Espacement interne */
-  font-size: 16px; /* Taille de la police */
-  border: none; /* Supprimer la bordure */
-  border-radius: 5px; /* Coins arrondis */
-  cursor: pointer; /* Curseur de la souris */
+  background-color: var(--color-text);
+  color: var(--color-white);
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
   transition: background-color 0.3s ease, transform 0.3s ease; /* Transition pour les effets */
-  margin: 10px 0; /* Espacement externe */
+  margin: 10px 0;
 }
 
 .btn:hover {
