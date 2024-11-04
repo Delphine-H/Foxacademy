@@ -3,7 +3,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/authContext';
 import Header from '../components/header';
 import '../styles/form.css';
-import '../styles/register.css';
 import '../styles/footer.css';
 import axios from 'axios';
 import Footer from '../components/footer';

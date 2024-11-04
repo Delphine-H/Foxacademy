@@ -100,21 +100,8 @@ h1 {
   transform: scale(0.95); /* Réduire légèrement lors du clic */
 }
 
-/*Footer
-.footer-general {
-  background-color: var(--color-text);
-  padding: 20px;
-  color: var(--color-white);
-  text-align: center;
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  border-radius: 0;
+.avatar-thumbnail {
+  width: 200px; /* Définir la largeur des images à 200 pixels */
+  height: auto; /* Maintenir le ratio d'aspect */
+  border: 2px solid transparent;
 }
-
-.footer-general {
-  font-size: 1em;
-  font-weight: bold;
-  color: var(--color-white);
-}
-*/

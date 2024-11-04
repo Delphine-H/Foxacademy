@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import '../styles/questionForm.css'; // Importez le fichier CSS
 import Header from '../components/header';
+import Footer from '../components/footer';
 
 const QuestionForm = () => {
   const { id } = useParams(); // paramètre id de l'URL
@@ -227,6 +228,7 @@ const QuestionForm = () => {
           </ul>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

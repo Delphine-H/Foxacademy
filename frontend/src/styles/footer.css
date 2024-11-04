@@ -1,14 +1,19 @@
 /*Footer*/
+
 .footer-general {
   background-color: var(--color-text);
   padding: 20px;
+  margin-top: 50px;
   color: var(--color-white);
-  position: fixed;
-  bottom: 0;
   text-align: center;
-  
   width: 100%;
   border-radius: 0;
   font-size: 1em;
   font-weight: bold;
+  position: relative; /* Position par dÃ©faut */
+}
+
+.fixed-footer {
+  position: fixed;
+  bottom: 0;
 }

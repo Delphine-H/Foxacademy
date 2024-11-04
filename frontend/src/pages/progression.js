@@ -4,6 +4,7 @@ import axios from 'axios';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 import '../styles/progression.css';
+import Footer from '../components/footer';
 import Header from '../components/header';
 
 ChartJS.register(ArcElement, Tooltip, Legend, ChartDataLabels);
@@ -140,6 +141,7 @@ const ProgressionChart = () => {
           </div>
         ))}
       </div>
+      <Footer />
     </div>
   );
 };

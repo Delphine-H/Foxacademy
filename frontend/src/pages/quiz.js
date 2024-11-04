@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Header from '../components/header';
-import '../styles/form.css'; 
+import '../styles/form.css';
 import { fetchUserScore } from '../utils/appUtils';
+import Footer from '../components/footer';
 
 const QuizForm = () => {
   const [question, setQuestion] = useState(null);
@@ -181,6 +182,7 @@ const QuizForm = () => {
 
         {message && <p>{message}</p>}
       </div>
+      <Footer />
     </div>
   );
 };
