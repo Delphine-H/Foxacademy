@@ -47,6 +47,7 @@ function Game() {
         const { newEnemies, rocketsToRemove } = checkCollisions(enemies, rockets);
         if (rocketsToRemove.size > 0 && collisionSound) {
             collisionSound.play();
+            setScore(prevScore => prevScore + 10);
         }
 
         setEnemies(newEnemies);
@@ -62,7 +63,6 @@ function Game() {
 
         if (newEnemies.length === 0) {
             victorySound.play();
-            setScore(prevScore => prevScore + 1);
             setEnemySpeed(prevSpeed => prevSpeed + 3);
             setEnemyColorIndex(prevIndex => (prevIndex + 1) % rainbowColors.length);
             setEnemies(generateEnemies());
@@ -154,7 +154,9 @@ function Game() {
             <div style={{ position: 'absolute', top: '100px', left: '10px', fontSize: '18px', fontWeight: 'bold' }}>
                 Score Total: {totalScore}
             </div>
-            <canvas ref={canvasRef} width={800} height={600} style={{ border: '8px solid black', backgroundColor: 'white' }}></canvas>
+            <div style={{ width: '75%', maxWidth: '800px', height: 'auto', position: 'relative' }}>
+                <canvas ref={canvasRef} width={800} height={600} style={{ width: '75%', height: 'auto', border: '8px solid black', backgroundColor: 'white', transformOrigin: 'top left' }}></canvas>
+            </div>
             <div>
             {gameStatus === 'waiting' ? (
                 <button onClick={startGame} style={{ padding: '10px 20px', marginTop: '30px', fontSize: '16px', cursor: 'pointer' }}>

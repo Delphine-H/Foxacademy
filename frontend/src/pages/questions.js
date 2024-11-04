@@ -15,7 +15,6 @@ const QuestionForm = () => {
     ValidityDate: '',
     Answers: [{ text: '', isCorrect: false }],
   });
-  const [originalAnswers, setOriginalAnswers] = useState([]); // Stocker les réponses existantes
 
   const [isEditMode, setIsEditMode] = useState(false);
   const [userQuestions, setUserQuestions] = useState([]);
@@ -42,7 +41,6 @@ const QuestionForm = () => {
               id: answer.id, // Assurez-vous que chaque réponse a un identifiant unique
             })),
           });
-          setOriginalAnswers(question.Answers); // Stocker les réponses existantes
         })
         .catch(error => {
           console.error('Error fetching question data:', error);
@@ -113,7 +111,7 @@ const QuestionForm = () => {
 
     try {
       // Mettre à jour la question
-      const response = await axios[method](url, formData, {
+      await axios[method](url, formData, {
         headers: { Authorization: `Bearer ${token}` }
       });
 
