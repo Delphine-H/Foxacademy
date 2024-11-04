@@ -100,16 +100,16 @@ h1 {
   transform: scale(0.95); /* Réduire légèrement lors du clic */
 }
 
-/* Footer */
+/*Footer
 .footer-general {
   background-color: var(--color-text);
   padding: 20px;
   color: var(--color-white);
   text-align: center;
-  position: absolute; /* Positionner le footer en bas de la page */
-  bottom: 0; /* Positionner le footer en bas */
-  width: 100%; /* S'assurer que le footer prend toute la largeur de la page */
-  border-radius: 0; /* Supprimer les coins arrondis */
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  border-radius: 0;
 }
 
 .footer-general {
@@ -117,3 +117,4 @@ h1 {
   font-weight: bold;
   color: var(--color-white);
 }
+*/

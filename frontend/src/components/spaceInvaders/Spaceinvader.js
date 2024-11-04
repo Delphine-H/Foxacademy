@@ -50,9 +50,9 @@ function Game() {
         }
 
         setEnemies(newEnemies);
-    
+
         setRockets(prevRockets => moveRockets(prevRockets, rocketsToRemove));
-        
+
         setTimeElapsed(prevTime => prevTime + deltaTime);
 
         if (timeElapsed + deltaTime >= 1000) {
@@ -154,20 +154,20 @@ function Game() {
             <div style={{ position: 'absolute', top: '100px', left: '10px', fontSize: '18px', fontWeight: 'bold' }}>
                 Score Total: {totalScore}
             </div>
-            <canvas ref={canvasRef} width={800} height={600} style={{ border: '2px solid black', backgroundColor: 'white' }}></canvas>
+            <canvas ref={canvasRef} width={800} height={600} style={{ border: '8px solid black', backgroundColor: 'white' }}></canvas>
             <div>
             {gameStatus === 'waiting' ? (
-                <button onClick={startGame} style={{ padding: '10px 20px', fontSize: '16px', cursor: 'pointer' }}>
+                <button onClick={startGame} style={{ padding: '10px 20px', marginTop: '30px', fontSize: '16px', cursor: 'pointer' }}>
                     Commencer
                 </button>
             ) : (
                 <>
                     <Player canvasRef={canvasRef} playerX={playerX} rockets={rockets} enemies={enemies} gameStatus={gameStatus} enemyColor={rainbowColors[enemyColorIndex]} />
-                    <Controls 
-                        setMovingLeft={setMovingLeft} 
-                        setMovingRight={setMovingRight} 
-                        shootRocket={shootRocketCallback} 
-                        gameStatus={gameStatus} 
+                    <Controls
+                        setMovingLeft={setMovingLeft}
+                        setMovingRight={setMovingRight}
+                        shootRocket={shootRocketCallback}
+                        gameStatus={gameStatus}
                         resetGame={resetGame}
                     />
                     <h3>Points de la partie : {score}</h3>

@@ -1,0 +1,23 @@
+/* progression.css */
+.chart-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+}
+
+.chart-container {
+  background-color: var(--color-white);
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 4px 20px var(--color-other);
+  max-width: 300px;
+  text-align: center;
+}
+
+.chart-container h3 {
+  margin-bottom: 20px;
+  font-size: 1.5em;
+  color: var(--color-heading);
+}

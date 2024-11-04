@@ -1,7 +1,7 @@
 import React from "react";
 import Header from "../components/header";
 import { fetchUserScore } from "../utils/appUtils";
-import Game from "../components/spaceInvaders/SpaceInvader";
+import Game from "../components/spaceInvaders/Spaceinvader";
 
 const Jeux = () => {
     return (
