@@ -6,8 +6,8 @@ import Header from '../components/header';
 import Footer from '../components/footer';
 
 const QuestionForm = () => {
-  const { id } = useParams(); // paramètre id de l'URL
-  const navigate = useNavigate(); // Hook pour la navigation
+  const { id } = useParams();
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     Text: '',
     Subject: '',
@@ -23,7 +23,6 @@ const QuestionForm = () => {
   useEffect(() => {
     if (id) {
       setIsEditMode(true);
-      // Fetch the question data for editing
       const token = localStorage.getItem('token');
       axios.get(`http://localhost:5000/question/${id}`, {
         headers: { Authorization: `Bearer ${token}` }
@@ -35,11 +34,11 @@ const QuestionForm = () => {
             Subject: question.Subject,
             Type: question.Type,
             Level: question.Level,
-            ValidityDate: question.ValidityDate ? question.ValidityDate.slice(0, 10) : '', // Formater la date
+            ValidityDate: question.ValidityDate ? question.ValidityDate.slice(0, 10) : '',
             Answers: question.Answers.map(answer => ({
               text: answer.text,
               isCorrect: answer.isCorrect,
-              id: answer.id, // Assurez-vous que chaque réponse a un identifiant unique
+              id: answer.id,
             })),
           });
         })
@@ -111,13 +110,11 @@ const QuestionForm = () => {
     const method = isEditMode ? 'put' : 'post';
 
     try {
-      // Mettre à jour la question
       await axios[method](url, formData, {
         headers: { Authorization: `Bearer ${token}` }
       });
 
       alert('Question sauvegardée');
-      // Reset form
       setFormData({
         Text: '',
         Subject: '',
@@ -126,9 +123,7 @@ const QuestionForm = () => {
         ValidityDate: '',
         Answers: [{ text: '', isCorrect: false }],
       });
-      // Mettre à jour la liste des questions
       fetchUserQuestions();
-      // Rediriger vers la page de création de question
       navigate('/create_question');
     } catch (error) {
       console.error('Error saving question:', error);
@@ -137,21 +132,20 @@ const QuestionForm = () => {
   };
 
   const handleEditQuestion = (id) => {
-    // Navigate to the edit question form with the selected question ID
     window.location.href = `/edit_questions/${id}`;
   };
 
   return (
     <div>
       <Header />
-      <div className="form-container">
-        <div className="form-section">
+      <div id="form-container">
+        <div id="form-section">
           <form onSubmit={handleSubmit}>
-            <div className="form-group">
+            <div id="form-group">
               <label>Texte de la question :</label>
               <input type="text" name="Text" value={formData.Text} onChange={handleChange} required />
             </div>
-            <div className="form-group">
+            <div id="form-group">
               <label>Matière :</label>
               <select name="Subject" value={formData.Subject} onChange={handleChange} required>
                 <option value="">Choix de la Matière</option>
@@ -163,7 +157,7 @@ const QuestionForm = () => {
                 <option value="Anglais">Anglais</option>
               </select>
             </div>
-            <div className="form-group">
+            <div id="form-group">
               <label>Type :</label>
               <select name="Type" value={formData.Type} onChange={handleChange} required>
                 <option value="">Choix du type</option>
@@ -172,7 +166,7 @@ const QuestionForm = () => {
                 <option value="Dictée">Dictée</option>
               </select>
             </div>
-            <div className="form-group">
+            <div id="form-group">
               <label>Niveau :</label>
               <select name="Level" value={formData.Level} onChange={handleChange} required>
                 <option value="">Choix du niveau</option>
@@ -183,14 +177,14 @@ const QuestionForm = () => {
                 <option value="CM2">CM2</option>
               </select>
             </div>
-            <div className="form-group">
+            <div id="form-group">
               <label>Date d'aquisition souhaitée :</label>
               <input type="date" name="ValidityDate" value={formData.ValidityDate} onChange={handleChange} required />
             </div>
-            <div className="form-group">
+            <div id="form-group">
               <label>Réponses :</label>
               {formData.Answers.map((answer, index) => (
-                <div key={index} className="answer-group">
+                <div key={index} id="answer-group">
                   <input
                     type="text"
                     name="text"
@@ -207,16 +201,16 @@ const QuestionForm = () => {
                     />
                     Correct
                   </label>
-                  <button type="button" onClick={() => removeAnswer(index)}>Supprimer</button>
+                  <button classeName="btn" onClick={() => removeAnswer(index)}>Supprimer</button>
                 </div>
               ))}
-              <button type="button" onClick={addAnswer}>Ajouter une réponse</button>
+              <button classeName="btn" onClick={addAnswer}>Ajouter une réponse</button>
             </div>
             <button type="submit">{isEditMode ? 'Mise à jour' : 'Création'} de la question</button>
           </form>
         </div>
 
-        <div className="questions-section">
+        <div id="questions-section">
           <h2>Mes questions :</h2>
           <ul>
             {userQuestions.map((question) => (
