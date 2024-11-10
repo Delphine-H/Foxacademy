@@ -1,0 +1,77 @@
+/* Conteneur principal */
+#form-container {
+    display: flex;
+    flex-direction: row; /* Disposer les sections côte à côte */
+    gap: 20px; /* Espacement entre les sections */
+    padding: 20px;
+    margin: 40px;
+    max-width: 100%;
+  }
+  
+  /* Section du formulaire */
+  #form-section {
+    flex: 1; /* Prendre tout l'espace disponible */
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Section des questions */
+  #questions-section {
+    flex: 1; /* Prendre tout l'espace disponible */
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Groupe de champs de formulaire */
+  #form-group {
+    margin-bottom: 15px;
+  }
+  
+  #form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  #form-group input[type="text"],
+  #form-group input[type="date"] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+
+  /* ajout */
+  #answer-group {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Espace entre les éléments */
+    margin-bottom: 10px; /* Espace entre les groupes de réponses */
+  }
+  
+  #answer-group input[type="text"] {
+    flex: 1; /* Prend le reste de l'espace disponible */
+  }
+  
+  #answer-group label {
+    display: flex;
+    align-items: center;
+  }
+  
+  #answer-group button {
+    background-color: #e74c3c; /* Couleur de fond pour le bouton de suppression */
+    color: #fff; /* Couleur du texte */
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+  
+  #answer-group button:hover {
+    background-color: #c0392b; /* Couleur au survol */
+  }
+  
+  
