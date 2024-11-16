@@ -119,7 +119,7 @@ router.get('/', authenticateJWT, async (req, res) => {
     const recentResults = await Result.findAll({
       where: {
         UserID,
-        Score: { [Op.gt]: 1 }, // Score greater than 1 (will be passed to 0 when database will be completed)
+        Score: { [Op.gt]: 0 }, // Score greater than 1 (will be passed to 0 when database will be completed)
         LastEvaluated: {
           [Op.gt]: new Date(Date.now() - 30 * 60 * 1000), // Within the last 30 minutes
         },

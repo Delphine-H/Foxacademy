@@ -162,7 +162,8 @@ const QuizForm = () => {
                   />
                   <label
                     htmlFor={`réponse-${index}`}
-                    style={{ color: correctAnswers.includes(ans.text) ? 'green' : 'black' }}
+                    style={{ color: correctAnswers.includes(ans.text) ? 'green' : 'black',
+                    whiteSpace: 'nowrap'}}
                   >
                     {ans.text}
                   </label>
