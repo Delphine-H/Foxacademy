@@ -58,7 +58,7 @@ const QuizForm = () => {
       const response = await axios.post('http://localhost:5000/result', {
         QuestionID: question.QuestionID,
         Score: score,
-        LastEvaluated: new Date().toISOString(), // Assurez-vous que la date est au format ISO
+        LastEvaluated: new Date().toISOString(), // Convertir la date est au format ISO
         Subject: subject,
       }, {
         headers: {
