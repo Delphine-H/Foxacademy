@@ -18,8 +18,6 @@ const authenticateJWT = (req, res, next) => {
         // Verify the token
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
         req.user = decoded;  // Save the decoded token data (usually contains user ID and role)
-        console.log('Decoded User:', req.user);
-        console.log('Decoded token:', decoded);
         next();  // Call the next middleware/route handler
     } catch (err) {
         if (err.name === 'TokenExpiredError') {

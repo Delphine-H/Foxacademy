@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 import Header from '../components/header';
 import '../styles/form.css';
@@ -14,6 +14,27 @@ const QuizForm = () => {
   const [formSubmitted, setFormSubmitted] = useState(false); // état pour suivre si le formulaire a été soumis
   const [userScore, setUserScore] = useState(0); // état pour stocker le score de l'utilisateur
 
+  const fetchQuestion = useCallback(async () => {
+    try {
+      const response = await axios.get('http://localhost:5000/question', {
+        params: {
+          Subject: subject,
+          Type: 'QCM', // Filtrer pour obtenir uniquement les questions de type QCM
+        },
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`, // transmettre l'ID de l'utilisateur
+        },
+      });
+      setQuestion(response.data);
+      setFormSubmitted(false); // Réinitialiser l'état du formulaire
+      setSelectedAnswers([]); // Réinitialiser les réponses sélectionnées
+      setMessage(''); // Réinitialiser le message
+      setCorrectAnswers([]); // Réinitialiser les réponses correctes
+    } catch (error) {
+      console.error('Erreur lors de la récupération de la question:', error);
+    }
+  }, [subject]);
+
   useEffect(() => {
     const fetchScore = async () => {
       const score = await fetchUserScore();
@@ -22,30 +43,8 @@ const QuizForm = () => {
 
     fetchScore(); // Récupérer le score de l'utilisateur lors du chargement du composant
 
-    const fetchQuestion = async () => {
-      try {
-        const response = await axios.get('http://localhost:5000/question', {
-          params: {
-            Subject: subject,
-            Type: 'QCM', // Filtrer pour obtenir uniquement les questions de type QCM
-          },
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`, // transmettre l'ID de l'utilisateur
-          },
-        });
-        console.log('Question récupérée:', response.data);
-        setQuestion(response.data);
-        setFormSubmitted(false); // Réinitialiser l'état du formulaire
-        setSelectedAnswers([]); // Réinitialiser les réponses sélectionnées
-        setMessage(''); // Réinitialiser le message
-        setCorrectAnswers([]); // Réinitialiser les réponses correctes
-      } catch (error) {
-        console.error('Erreur lors de la récupération de la question:', error);
-      }
-    };
-
-    fetchQuestion();
-  }, [subject]); // tableau des dépendances
+    fetchQuestion(); // Charger la première question lors du chargement du composant
+  }, [fetchQuestion]); // tableau des dépendances
 
   const handleCheckboxChange = (e) => {
     const value = e.target.value;
@@ -59,7 +58,7 @@ const QuizForm = () => {
       const response = await axios.post('http://localhost:5000/result', {
         QuestionID: question.QuestionID,
         Score: score,
-        LastEvaluated: new Date(),
+        LastEvaluated: new Date().toISOString(), // Convertir la date est au format ISO
         Subject: subject,
       }, {
         headers: {
@@ -96,30 +95,9 @@ const QuizForm = () => {
 
     // Soumettre le résultat
     await submitResult(score);
-  };
 
-  const handleNextQuestion = () => {
     // Recharger une nouvelle question
-    axios.get('http://localhost:5000/question', {
-      params: {
-        Subject: subject,
-        Type: 'QCM', // Filtrer pour obtenir uniquement les questions de type QCM
-      },
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem('token')}`, // transmettre l'ID de l'utilisateur
-      },
-    })
-    .then(response => {
-      console.log('Question suivante récupérée:', response.data);
-      setQuestion(response.data);
-      setFormSubmitted(false); // Réinitialiser l'état du formulaire soumis
-      setSelectedAnswers([]); // Réinitialiser les réponses sélectionnées
-      setMessage(''); // Réinitialiser le message
-      setCorrectAnswers([]); // Réinitialiser les réponses correctes
-    })
-    .catch(error => {
-      console.error('Erreur lors de la récupération de la question suivante:', error);
-    });
+    fetchQuestion();
   };
 
   return (
@@ -170,12 +148,9 @@ const QuizForm = () => {
                 </div>
               ))}
             </div>
-            {formSubmitted ? (
-              <button style={{ marginTop: '50px' }} type="button"
-              className="btn-cta" onClick={handleNextQuestion}>Question suivante</button>
-            ) : (
-              <button style={{ marginTop: '50px' }} type="submit" className="btn-cta">Répondre</button>
-            )}
+            <button style={{ marginTop: '50px' }} type="submit" className="btn-cta">
+              {formSubmitted ? 'Question suivante' : 'Répondre'}
+            </button>
           </form>
         ) : (
           <div>Bravo ! Tu as bien travaillé dans cette matière aujourd'hui ! Change de discipline ou reviens demain.</div>
