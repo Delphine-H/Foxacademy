@@ -1,10 +1,27 @@
 /* progression.css */
 .chart-grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  display: grid;
   gap: 20px;
   padding: 20px;
+  justify-items: center; /* Centrer les éléments horizontalement */
+}
+
+/* Pour les petits écrans (smartphones) */
+@media (max-width: 768px) {
+  .chart-grid {
+    grid-template-columns: 1fr; /* 1 colonne */
+    grid-template-rows: auto; /* Autant de lignes que nécessaire */
+  }
+}
+
+/* Pour les grands écrans (tablettes et desktops) */
+@media (min-width: 769px) {
+  .chart-grid {
+    grid-template-columns: repeat(3, 1fr); /* 3 colonnes */
+    grid-template-rows: repeat(2, auto); /* 2 lignes */
+    margin: 0 auto; /* Centrer la grille */
+    max-width: 60%; /* Limiter la largeur de la grille */
+  }
 }
 
 .chart-container {
