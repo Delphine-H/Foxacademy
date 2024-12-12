@@ -75,3 +75,10 @@ body {
   margin-bottom: 20px;
   font-size: 14px
 }
+
+/* Pour les petits écrans */
+@media (max-width: 812px) {
+  body {
+    background-image: none; /* Enlever le fond d'écran pour les petits écrans */
+  }
+}

@@ -60,7 +60,7 @@ const Menu = () => {
             <p>Jeux</p>
           </div>
         </div>
-        <button className="full-width-button" onClick={handleQuestionFormNavigation}>
+        <button className="full-width-button create-questions-button" onClick={handleQuestionFormNavigation}>
           Créer des questions
         </button>
       </div>
