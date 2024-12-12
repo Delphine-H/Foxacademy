@@ -146,3 +146,11 @@ body {
   transform: scale(1.05); /* Agrandir légèrement au survol */
 }
 
+/* Pour les petits écrans (smartphones) */
+@media (max-width: 768px) {
+  .create-questions-button {
+    width: 100%; /* Ajuster la largeur à 100% pour les petits écrans */
+    padding: 15px; /* Augmenter le padding si nécessaire */
+    font-size: 1.2em; /* Ajuster la taille de la police si nécessaire */
+  }
+}
