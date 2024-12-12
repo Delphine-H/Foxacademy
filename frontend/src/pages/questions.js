@@ -45,7 +45,17 @@ const QuestionForm = () => {
         .catch(error => {
           console.error('Error fetching question data:', error);
         });
-    }
+      } else {
+        setIsEditMode(false); // Réinitialiser isEditMode à false si id n'est pas défini
+        setFormData({
+          Text: '',
+          Subject: '',
+          Type: '',
+          Level: '',
+          ValidityDate: '',
+          Answers: [{ text: '', isCorrect: false }],
+        });
+      }
   }, [id]);
 
   const fetchUserQuestions = async () => {
