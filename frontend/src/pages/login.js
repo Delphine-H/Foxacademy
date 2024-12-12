@@ -26,7 +26,7 @@ const Login = () => {
     try {
       await login(email, password);
     } catch (error) {
-      setErrorMessage('Invalid credentials');
+      setErrorMessage('Erreur dans l\'identifiant ou le mot de passe');
     }
   };
 return (
@@ -49,7 +49,7 @@ return (
         <form onSubmit={handleLogin}>
 
           <div className='label'>
-            <label>Email:</label>
+            <label>Email :</label>
           </div>
           <input
             type="email"
@@ -60,7 +60,7 @@ return (
 
           {/* Mot de passe */}
           <div className='label'>
-            <label>Password:</label>
+            <label>Mot de passe :</label>
           </div>
           <div className="password-container" >
             <input
