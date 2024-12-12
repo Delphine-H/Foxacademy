@@ -93,3 +93,7 @@ input, select {
   margin-left: 30px;
   margin-right: 20px;
 }
+
+.answer-label {
+  white-space: nowrap; /* Empêcher le retour à la ligne */
+}
