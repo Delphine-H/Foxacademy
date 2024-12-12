@@ -22,6 +22,7 @@ router.post('/', async (req, res) => {
       process.env.JWT_SECRET,
       { expiresIn: '1h' },
     );
+    console.log('token:', token);
     return res.json({ token, role: user.Role });
   } catch (err) {
     console.error('Server error:', err);
