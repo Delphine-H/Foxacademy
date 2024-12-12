@@ -17,7 +17,7 @@ const authenticateJWT = (req, res, next) => {
     try {
         // Verify the token
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
-        req.user = decoded;  // Save the decoded token data (usually contains user ID and role)
+        req.user = decoded;  // Save the decoded token data 
         next();  // Call the next middleware/route handler
     } catch (err) {
         if (err.name === 'TokenExpiredError') {
