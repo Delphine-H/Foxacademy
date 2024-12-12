@@ -1,0 +1,43 @@
+* Styles par défaut pour le canvas */
+.canvas-wrapper {
+  width: 75%;
+  max-width: 800px;
+  height: auto;
+  position: relative;
+}
+
+.game-canvas {
+  width: 75%;
+  height: auto;
+  border: 8px solid black;
+  background-color: white;
+  transform-origin: top left;
+}
+
+/* Pour les écrans de 812 pixels de large */
+@media (max-width: 812px) {
+  .canvas-wrapper {
+    width: 65%; /* Ajuster la largeur pour les écrans de 812 pixels de large */
+  }
+
+  .game-canvas {
+    width: 65%; /* Ajuster la largeur pour les écrans de 812 pixels de large */
+    height: auto; /* Ajuster la hauteur automatiquement */
+    border: 4px solid black; /* Réduire l'épaisseur de la bordure */
+  }
+}
+
+  /* buttons */
+  .btn-cta {
+    background-color: var(--color-text);
+    color: var(--color-white);
+    padding: 15px 20px;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2em;
+    border-radius: 15px;
+  }
+
+  .btn-cta:hover {
+    background-color: var(--color-secondary-fox);
+  }

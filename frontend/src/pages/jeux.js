@@ -3,6 +3,7 @@ import Header from "../components/header";
 import { fetchUserScore } from "../utils/appUtils";
 import Game from "../components/spaceInvaders/Spaceinvader";
 import Footer from "../components/footer";
+import "../styles/SpaceInvader.css";
 
 const Jeux = () => {
     return (

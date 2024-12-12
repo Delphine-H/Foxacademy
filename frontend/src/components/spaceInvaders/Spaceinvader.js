@@ -154,12 +154,12 @@ function Game() {
             <div style={{ position: 'absolute', top: '100px', left: '10px', fontSize: '18px', fontWeight: 'bold' }}>
                 Score Total: {totalScore}
             </div>
-            <div style={{ width: '75%', maxWidth: '800px', height: 'auto', position: 'relative' }}>
-                <canvas ref={canvasRef} width={800} height={600} style={{ width: '75%', height: 'auto', border: '8px solid black', backgroundColor: 'white', transformOrigin: 'top left' }}></canvas>
+            <div className="canvas-wrapper">
+            <canvas ref={canvasRef} width={800} height={600} className="game-canvas"></canvas>
             </div>
             <div>
             {gameStatus === 'waiting' ? (
-                <button onClick={startGame} style={{ padding: '10px 20px', marginTop: '30px', fontSize: '16px', cursor: 'pointer' }}>
+                <button onClick={startGame} className="btn-cta" style={{ padding: '10px 20px', marginTop: '30px', fontSize: '16px', cursor: 'pointer' }}>
                     Commencer
                 </button>
             ) : (
